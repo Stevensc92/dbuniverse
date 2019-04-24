@@ -142,6 +142,11 @@ body
     margin-right: 45px;
 }
 
+#inscription-content
+{
+    width: 55%;
+}
+
 span.error { color: red; }
 span.success { color: green; }
 
