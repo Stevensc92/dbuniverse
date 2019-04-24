@@ -1,0 +1,8 @@
+{% extends('base.html.twig') %}
+
+{% block body %}
+    {% if is_granted('ROLE_USER') %}
+    {% else %}
+        {% include 'registration/register.html.twig' %}
+    {% endif %}
+{% endblock %}

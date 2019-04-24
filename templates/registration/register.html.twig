@@ -1,0 +1,26 @@
+{% form_theme form 'themes/register.form.html.twig' %}
+
+<div class="d-flex mt-5 flex-row-reverse" id="inscription">
+    <span>Rejoignez l'aventure dès maintenant ! Cela vous prendra une minute !</span>
+{{ form_start(form) }}
+    <div class="container mt-5">
+        <div class="small-12 medium-6 large-4 cell">
+            {{ form_row(form.username) }}
+
+        </div>
+        <div class="small-12 medium-6 large-4 cell">
+            {{ form_row(form.email) }}
+        </div>
+        <div class="small-12 medium-6 large-4 cell">
+            {{ form_row(form.plainPassword.first) }}
+        </div>
+        <div class="small-12 medium-6 large-4 cell">
+            {{ form_row(form.plainPassword.second) }}
+        </div>
+
+        <div class="small-12 medium-6 large-4 cell">
+            <button type="submit" class="button">S'inscrire</button>
+        </div>
+    </div>
+{{ form_end(form) }}
+</div>

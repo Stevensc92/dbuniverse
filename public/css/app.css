@@ -1,0 +1,167 @@
+/**
+    B O D Y
+ */
+
+body
+{
+    background: url("../images/background.png")!important;
+    min-width: 565px;
+    max-width: 100%;
+    height: 10px;
+    overflow: auto;
+}
+
+
+/**
+    N A V B A R
+ */
+
+#menu
+{
+    background: url("../images/top/background_top.png");
+    height: 51px;
+}
+
+#logo
+{
+    background: url("../images/logo_petit.png");
+    width: 144px;
+    height: 56px!important;
+}
+
+.lien-perso
+{
+    background: url("../images/top/personnage.png");
+    width: 150px;
+    height: 35px;
+}
+
+.lien-combat
+{
+    background: url("../images/top/combat.png");
+    width: 117px;
+    height: 35px;
+}
+
+.lien-carte
+{
+    background: url("../images/top/carte.png");
+    width: 80px;
+    height: 35px;
+}
+
+.lien-top
+{
+    background: url("../images/top/top.png");
+    width: 59px;
+    height: 34px;
+}
+
+.logout
+{
+    background: url("../images/top/deconnexion.png");
+    width: 45px;
+    height: 45px;
+}
+
+.info-player-online
+{
+    color: #fff;
+}
+
+.info-player-online span
+{
+    font-weight: bold;
+}
+
+/**
+    C U S T O M
+        button
+        input
+ */
+
+#menu button
+{
+    color: #fff!important;
+    background: linear-gradient(#64819f, #94afcb);
+    border: 1px solid white!important;
+    border-radius: 8px!important;
+    box-shadow: 1px 1px 8px #64819f!important;
+    margin-top: 20px;
+}
+
+#menu button::placeholder, #menu input::placeholder
+{
+    color: #fff;
+}
+
+#menu input, #menu select, #menu .button
+{
+    color: #fff!important;
+    background: linear-gradient(#64819f, #94afcb);
+    border: 1px solid white;
+    border-radius: 8px!important;
+    box-shadow: 1px 1px 8px #64819f;
+}
+
+/**
+    I N S C R I P T I O N
+ */
+
+#inscription
+{
+    margin: 0 auto;
+    background: url("../images/register/background_full.png") no-repeat center;
+    width: 886px;
+    height: 393px;
+}
+
+.text-inscription
+{
+    width: 340px;
+    position: relative;
+    top: 70px;
+    left: 450px;
+}
+
+.text-inscription label
+{
+    display: block;
+    float: left;
+    width: 175px;
+}
+
+.text-inscription label, .text-inscription input
+{
+    margin-top: 5px;
+}
+
+.text-inscription input[type=submit]
+{
+    float: right;
+    margin-right: 45px;
+}
+
+span.error { color: red; }
+span.success { color: green; }
+
+span.error, span.success
+{
+    display: block;
+    margin-top: 40px;
+    width: auto;
+}
+
+
+/**
+    R E S P O N S I V E
+ */
+
+@media (max-width: 991px)
+{
+    .navbar
+    {
+        padding: 0 0!important;
+        margin: 0!important;
+    }
+}

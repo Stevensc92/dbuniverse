@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
+{% include 'template/header.html.twig' %}
+
+
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+    {% include 'template/menu.html.twig' %}
+    {% include('template/flash.html.twig') %}
+    {% block body %}
+        {% include('template/index.html.twig') %}
+    {% endblock %}
     </body>
+
+{% include 'template/footer.html.twig' %}
+
+{% include 'template/js.html.twig' %}
+
+{% block javascripts %}
+{% endblock %}
 </html>
