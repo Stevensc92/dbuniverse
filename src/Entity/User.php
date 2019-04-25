@@ -71,137 +71,142 @@ class User implements UserInterface, \Serializable
     * @ORM\Column(type="string", length=255, nullable=true)
     */
     private $token;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\GameUser", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $gameUser;
      
 	public function __construct()
-	{
-		$this->isActive = true;
-		$this->roles = ['ROLE_USER'];
-	}
+    {
+        $this->isActive = true;
+        $this->roles = ['ROLE_USER'];
+    }
     
 	/*
 	 * Get id
 	 */
 	public function getId()
-	{
-		return $this->id;
-	}
+    {
+        return $this->id;
+    }
 
 	public function getUsername()
-	{
-		return $this->username;
-	}
+    {
+        return $this->username;
+    }
 
 	public function setUsername($username)
-	{
-		$this->username = $username;
-		return $this;
-	}
+    {
+        $this->username = $username;
+        return $this;
+    }
 
 
 	public function getPassword()
-	{
-		return $this->password;
-	}
+    {
+        return $this->password;
+    }
 
 	public function setPassword($password)
-	{
-		$this->password = $password;
-		return $this;
-	}
+    {
+        $this->password = $password;
+        return $this;
+    }
 
 	/*
 	 * Get email
 	 */
 	public function getEmail()
-	{
-		return $this->email;
-	}
+    {
+        return $this->email;
+    }
 
 	/*
 	 * Set email
 	 */
 	public function setEmail($email)
-	{
-		$this->email = $email;
-		return $this;
-	}
+    {
+        $this->email = $email;
+        return $this;
+    }
 
 	/*
 	 * Get isActive
 	 */
 	public function getIsActive()
-	{
-		return $this->isActive;
-	}
+    {
+        return $this->isActive;
+    }
 
 	/*
 	 * Set isActive
 	 */
 	public function setIsActive($isActive)
-	{
-		$this->isActive = $isActive;
-		return $this;
-	}
+    {
+        $this->isActive = $isActive;
+        return $this;
+    }
 
 	public function getSalt()
-	{
-		// pas besoin de salt puisque nous allons utiliser bcrypt
-		// attention si vous utilisez une méthode d'encodage différente !
-		// il faudra décommenter les lignes concernant le salt, créer la propriété correspondante, et renvoyer sa valeur dans cette méthode
-		return null;
-	}
+    {
+        // pas besoin de salt puisque nous allons utiliser bcrypt
+        // attention si vous utilisez une méthode d'encodage différente !
+        // il faudra décommenter les lignes concernant le salt, créer la propriété correspondante, et renvoyer sa valeur dans cette méthode
+        return null;
+    }
 
 	// modifier la méthode getRoles
 	public function getRoles()
-	{
-		return $this->roles; 
-	}
+    {
+        return $this->roles;
+    }
 
 	public function setRoles(array $roles)
-	{
-		if (!in_array('ROLE_USER', $roles))
-		{
-			$roles[] = 'ROLE_USER';
-		}
-		foreach ($roles as $role)
-		{
-			if(substr($role, 0, 5) !== 'ROLE_') {
-				throw new InvalidArgumentException("Chaque rôle doit commencer par 'ROLE_'");
-			}
-		}
-		$this->roles = $roles;
-		return $this;
-	} 
+    {
+        if (!in_array('ROLE_USER', $roles))
+        {
+            $roles[] = 'ROLE_USER';
+        }
+        foreach ($roles as $role)
+        {
+            if(substr($role, 0, 5) !== 'ROLE_') {
+                throw new InvalidArgumentException("Chaque rôle doit commencer par 'ROLE_'");
+            }
+        }
+        $this->roles = $roles;
+        return $this;
+    }
 
 	public function eraseCredentials()
-	{
-	}
+    {
+    }
 
 	/** @see \Serializable::serialize() */
 	public function serialize()
-	{
-		return serialize(array(
-			$this->id,
-			$this->username,
-			$this->password,
-			$this->isActive,
-			// voir remarques sur salt plus haut
-			// $this->salt,
-		));
-	}
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            $this->isActive,
+            // voir remarques sur salt plus haut
+            // $this->salt,
+        ));
+    }
 
 	/** @see \Serializable::unserialize() */
 	public function unserialize($serialized)
-	{
-		list (
-			$this->id,
-			$this->username,
-			$this->password,
-			$this->isActive,
-			// voir remarques sur salt plus haut
-			// $this->salt
-		) = unserialize($serialized);
-	}
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            $this->isActive,
+            // voir remarques sur salt plus haut
+            // $this->salt
+        ) = unserialize($serialized);
+    }
 
     public function getPlainPassword()
     {
@@ -244,6 +249,23 @@ class User implements UserInterface, \Serializable
     public function setToken($token)
     {
         $this->token = $token;
+        return $this;
+    }
+
+    public function getGameUser(): ?GameUser
+    {
+        return $this->gameUser;
+    }
+
+    public function setGameUser(GameUser $gameUser): self
+    {
+        $this->gameUser = $gameUser;
+
+        // set the owning side of the relation if necessary
+        if ($this !== $gameUser->getUser()) {
+            $gameUser->setUser($this);
+        }
+
         return $this;
     }
 

@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\GameListUserCharacter;
+use App\Entity\GameUser;
 use App\Entity\User;
 use App\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -27,14 +29,25 @@ class AppController extends Controller
 
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
 
-                // Encode le mot de passe
+                // Encode password
                 $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
                 $user->setPassword($password);
 
-                // Enregistre le membre en base
-                $em = $this->getDoctrine()->getManager();
+                // Create game user
+                $gameUser = new GameUser();
+                $gameUser->setUser($user);
+                $user->setGameUser($gameUser);
+
+                // Create game user list character
+                $gameListUserCharacter = new GameListUserCharacter();
+                $gameListUserCharacter->setUserId($user);
+
+                $em->persist($gameListUserCharacter);
+                $em->persist($gameUser);
                 $em->persist($user);
+
                 $em->flush();
 
                 $request->getSession()->getFlashBag()->add('success', "Votre compte est enregistré.");
