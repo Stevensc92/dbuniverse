@@ -23,12 +23,9 @@
                     <p>
                         <a href="{{path('request_resetting')}}">Mot de passe oublié ?</a>
                     </p>
-                    
                 </div>
 
                 <div class="small-12 medium-6 medium-offset-3 large-4 large-offset-4 cell">
-                    <input type="hidden" name="_target_path" value="{{ path('account') }}" />
-
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
                     <button type="submit" class="button">Connexion</button>
                 </div>
