@@ -17,9 +17,7 @@ class AppController extends Controller
      */
     public function index(Request $request,  UserPasswordEncoderInterface $passwordEncoder)
     {
-        dump($request);
-
-        if ($this->isGranted('IS_AUTHENTICATED_ANONYMOUSLY')) {
+        if ($this->isGranted('IS_AUTHENTICATED_ANONYMOUSLY') && !$this->isGranted('ROLE_USER')) {
             // création du formulaire
             $user = new User();
             // instancie le formulaire avec les contraintes par défaut, + la contrainte registration pour que la saisie du mot de passe soit obligatoire

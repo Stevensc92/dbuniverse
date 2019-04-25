@@ -2,6 +2,7 @@
 
 {% block body %}
     {% if is_granted('ROLE_USER') %}
+        {% include 'home/index.html.twig' %}
     {% else %}
         {% include 'registration/register.html.twig' %}
     {% endif %}

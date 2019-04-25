@@ -14,6 +14,7 @@ body
 
 /**
     N A V B A R
+        T O P
  */
 
 #menu
@@ -27,6 +28,7 @@ body
     background: url("../images/logo_petit.png");
     width: 144px;
     height: 56px!important;
+    z-index:999;
 }
 
 .lien-perso
@@ -72,6 +74,163 @@ body
 .info-player-online span
 {
     font-weight: bold;
+}
+
+/**
+    N A V B A R
+        L E F T
+ */
+
+#navbar-left
+{
+    margin-top: 5px;
+    background: url("../images/nav/background_2.png");
+    width: 187px;
+    height: 652px;
+    position: fixed;
+    top: 45px;
+    left: -1px;
+}
+
+#navbar-left a {
+    margin-bottom: 14px;
+    margin-left: 5px;
+}
+
+
+#navbar-left .nav-aventure
+{
+    background: url("../images/nav/aventure.png");
+    width: 198px;
+    height: 46px;
+    position: relative;
+    top: 5px;
+    margin-bottom: 15px;
+}
+
+#navbar-left
+{
+    position: relative;
+    top: -7px;
+}
+
+.lien-nav
+{
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.nav-accueil
+{
+    background: url("../images/nav/accueil.png");
+    width: 207px;
+    height: 62px;
+    margin-top: 20px;
+}
+
+.nav-accueil:hover
+{
+    background: url("../images/nav/accueil_hover.png");
+    width: 207px;
+    height: 62px;
+}
+
+.nav-personnage
+{
+    background: url("../images/nav/personnage.png");
+    width: 207px;
+    height: 62px;
+}
+
+.nav-personnage:hover
+{
+    background: url("../images/nav/personnage_hover.png");
+    width: 207px;
+    height: 62px;
+}
+
+.nav-capsule
+{
+    background: url("../images/nav/capsule.png");
+    width: 207px;
+    height: 62px;
+}
+
+.nav-capsule:hover
+{
+    background: url("../images/nav/capsule_hover.png");
+    width: 207px;
+    height: 62px;
+}
+
+.nav-message
+{
+    background: url("../images/nav/message.png");
+    width: 207px;
+    height: 62px;
+}
+
+.nav-message:hover
+{
+    background: url("../images/nav/message_hover.png");
+    width: 207px;
+    height: 62px;
+}
+
+.nav-message-new
+{
+    background: url("../images/nav/message_new.png");
+    width: 207px;
+    height: 62px;
+}
+
+.nav-message-new:hover
+{
+    background: url("../images/nav/message_new_hover.png");
+    width: 207px;
+    height: 62px;
+}
+
+.nav-option
+{
+    background: url("../images/nav/option.png");
+    width: 207px;
+    height: 62px;
+}
+
+.nav-option:hover
+{
+    background: url("../images/nav/option_hover.png");
+    width: 207px;
+    height: 62px;
+}
+
+.nav-forum
+{
+    background: url("../images/nav/forum.png");
+    width: 207px;
+    height: 62px;
+}
+
+.nav-forum:hover
+{
+    background: url("../images/nav/forum_hover.png");
+    width: 207px;
+    height: 62px;
+}
+
+.nav-team
+{
+    background: url("../images/nav/team.png");
+    width: 207px;
+    height: 62px;
+}
+
+.nav-team:hover
+{
+    background: url("../images/nav/team_hover.png");
+    width: 207px;
+    height: 62px;
 }
 
 /**
