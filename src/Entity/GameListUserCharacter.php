@@ -23,9 +23,9 @@ class GameListUserCharacter
     private $user;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\GameListCharacter")
      */
-    private $character_id;
+    private $character;
 
     /**
      * @ORM\Column(type="integer")
@@ -163,14 +163,14 @@ class GameListUserCharacter
         return $this;
     }
 
-    public function getCharacterId(): ?int
+    public function getCharacter(): ?int
     {
         return $this->character_id;
     }
 
-    public function setCharacterId(int $character_id): self
+    public function setCharacter(GameListCharacter $character): self
     {
-        $this->character_id = $character_id;
+        $this->character = $character;
 
         return $this;
     }
