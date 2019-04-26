@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\GameListUserCharacter;
+use App\Entity\GameCharacter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method GameListUserCharacter|null find($id, $lockMode = null, $lockVersion = null)
- * @method GameListUserCharacter|null findOneBy(array $criteria, array $orderBy = null)
- * @method GameListUserCharacter[]    findAll()
- * @method GameListUserCharacter[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method GameCharacter|null find($id, $lockMode = null, $lockVersion = null)
+ * @method GameCharacter|null findOneBy(array $criteria, array $orderBy = null)
+ * @method GameCharacter[]    findAll()
+ * @method GameCharacter[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class GameListUserCharacterRepository extends ServiceEntityRepository
+class GameCharacterRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, GameListUserCharacter::class);
+        parent::__construct($registry, GameCharacter::class);
     }
 
     // /**
-    //  * @return GameListUserCharacter[] Returns an array of GameListUserCharacter objects
+    //  * @return GameCharacter[] Returns an array of GameCharacter objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class GameListUserCharacterRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?GameListUserCharacter
+    public function findOneBySomeField($value): ?GameCharacter
     {
         return $this->createQueryBuilder('g')
             ->andWhere('g.exampleField = :val')

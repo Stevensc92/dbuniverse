@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
+use App\Entity\GameCharacter;
+use App\Repository\GameCharacterRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\GameListUserCharacterRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\GameUserCharacterRepository")
  */
-class GameListUserCharacter
+class GameUserCharacter
 {
     /**
      * @ORM\Id()
@@ -23,7 +25,7 @@ class GameListUserCharacter
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\GameListCharacter")
+     * @ORM\ManyToOne(targetEntity="App\Entity\GameCharacter")
      */
     private $character;
 
@@ -124,7 +126,6 @@ class GameListUserCharacter
 
     public function __construct()
     {
-        $this->character_id = 1;
         $this->level = 1;
         $this->experience = 0;
         $this->points_to_distribute = 6;
@@ -168,7 +169,7 @@ class GameListUserCharacter
         return $this->character_id;
     }
 
-    public function setCharacter(GameListCharacter $character): self
+    public function setCharacter(GameCharacter $character): self
     {
         $this->character = $character;
 

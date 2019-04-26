@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\GameListUserCharacter;
 use App\Entity\GameUser;
+use App\Entity\GameUserCharacter;
 use App\Entity\User;
 use App\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -41,10 +41,14 @@ class AppController extends Controller
                 $user->setGameUser($gameUser);
 
                 // Create game user list character
-                $gameListUserCharacter = new GameListUserCharacter();
-                $gameListUserCharacter->setUserId($user);
+                $characterRepository = $em->getRepository('App:GameCharacter');
+                $character = $characterRepository->findOneBy(['id' => 1]);
 
-                $em->persist($gameListUserCharacter);
+                $gameUserCharacter = new GameUserCharacter();
+                $gameUserCharacter->setUserId($user)
+                                  ->setCharacter($character);
+
+                $em->persist($gameUserCharacter);
                 $em->persist($gameUser);
                 $em->persist($user);
 

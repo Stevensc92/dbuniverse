@@ -1,18 +1,16 @@
 <?php
 
-namespace App\Command;
+namespace App\Command\GenerateGame;
 
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Command\Command;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\GameLevel;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class GenerateGameLevelCommand extends Command
+class LevelCommand extends Command
 {
     private $em;
 
