@@ -1,0 +1,7 @@
+{% set currentCharacter = game.getCurrentCharacter() %}
+<div id="current_character">
+    <div class="avatar">
+        {#{{ dump(currentCharacter.getCharacter) }}#}
+        <img src="{{ asset('images/character/avatar/'~game.getAvatar()) }}" />
+    </div>
+</div>

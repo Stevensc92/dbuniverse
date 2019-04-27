@@ -164,9 +164,9 @@ class GameUserCharacter
         return $this;
     }
 
-    public function getCharacter(): ?int
+    public function getCharacter(): GameCharacter
     {
-        return $this->character_id;
+        return $this->character;
     }
 
     public function setCharacter(GameCharacter $character): self

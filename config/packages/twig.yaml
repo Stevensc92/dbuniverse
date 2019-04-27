@@ -4,3 +4,5 @@ twig:
     strict_variables: '%kernel.debug%'
     form_themes:
         - 'themes/register.form.html.twig'
+    globals:
+        game: '@App\Services\Character'

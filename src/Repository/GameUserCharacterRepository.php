@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\GameUserCharacter;
+use App\Entity\User;
+use App\Entity\GameCharacter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -17,6 +19,23 @@ class GameUserCharacterRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, GameUserCharacter::class);
+    }
+
+    /**
+     * @param User $user
+     * @param GameCharacter $character
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findCurrentCharacter(User $user, GameCharacter $character)
+    {
+        return $this->createQueryBuilder('game_user_character')
+                ->where('game_user_character.user = :user')
+                ->andWhere('game_user_character.character = :character')
+                ->setParameter('user', $user)
+                ->setParameter('character', $character)
+                ->getQuery()
+                ->getOneOrNullResult();
     }
 
     // /**

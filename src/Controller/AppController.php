@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\GameCharacter;
 use App\Entity\GameUser;
 use App\Entity\GameUserCharacter;
 use App\Entity\User;
@@ -42,6 +43,8 @@ class AppController extends Controller
 
                 // Create game user list character
                 $characterRepository = $em->getRepository('App:GameCharacter');
+
+                /** @var GameCharacter $character */
                 $character = $characterRepository->findOneBy(['id' => 1]);
 
                 $gameUserCharacter = new GameUserCharacter();
