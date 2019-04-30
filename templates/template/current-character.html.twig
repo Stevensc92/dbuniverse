@@ -2,6 +2,6 @@
 <div id="current_character">
     <div class="avatar">
         {#{{ dump(currentCharacter.getCharacter) }}#}
-        <img src="{{ asset('images/character/avatar/'~game.getAvatar() | imagine_filter('game_avatar_current_char')) }}" />
+        <img src="{{ asset('images/character/avatar/'~game.getAvatar()) | imagine_filter('game_avatar_current_char') }}" />
     </div>
 </div>

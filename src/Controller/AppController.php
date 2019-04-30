@@ -7,6 +7,7 @@ use App\Entity\GameUser;
 use App\Entity\GameUserCharacter;
 use App\Entity\User;
 use App\Form\UserType;
+use App\Services\Character;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +19,7 @@ class AppController extends Controller
     /**
      * @Route("/", name="index")
      */
-    public function index(Request $request,  UserPasswordEncoderInterface $passwordEncoder)
+    public function index(Request $request,  UserPasswordEncoderInterface $passwordEncoder, Character $character)
     {
         if ($this->isGranted('IS_AUTHENTICATED_ANONYMOUSLY') && !$this->isGranted('ROLE_USER')) {
             // création du formulaire

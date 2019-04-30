@@ -317,6 +317,27 @@ span.error, span.success
 }
 
 
+#current_character
+{
+    background: url("../images/perso_en_cours/background.png");
+    width: 190px;
+    height: 466px;
+    position: fixed;
+    top: 60px;
+    right: 25px;
+    text-align: center;
+}
+
+#current_character .avatar
+{
+    position: relative;
+    left: 28px;
+    top: 26px;
+    width: 133px;
+    height: 179px;
+}
+
+
 /**
     R E S P O N S I V E
  */
