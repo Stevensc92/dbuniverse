@@ -321,9 +321,6 @@ span.error, span.success
     background: url("../images/perso_en_cours/background.png");
     width: 190px;
     height: 466px;
-    position: fixed;
-    top: 60px;
-    right: 25px;
     text-align: center;
 }
 
