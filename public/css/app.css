@@ -11,7 +11,6 @@ body
     overflow: auto;
 }
 
-
 /**
     N A V B A R
         T O P
@@ -84,8 +83,8 @@ body
 #navbar-left
 {
     margin-top: 5px;
-    background: url("../images/nav/background_2.png");
-    width: 187px;
+    background: url("../images/nav/background_2.png") no-repeat;
+    width: auto;
     height: 652px;
     position: fixed;
     top: 45px;
@@ -406,6 +405,16 @@ span.error, span.success
     text-align: center;
     font-size: 10px;
 }
+
+
+
+#info-character
+{
+    background: url("../images/info_perso/background.png");
+    width: 840px;
+    height: 510px;
+}
+
 
 /**
     R E S P O N S I V E

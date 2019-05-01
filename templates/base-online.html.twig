@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+{% include 'template/header.html.twig' %}
+
+
+<body>
+    {% include 'template/menu.html.twig' %}
+    {% include 'template/flash.html.twig' %}
+    <div class="d-flex">
+        {% include 'template/navbar-left.html.twig' %}
+        {% block body %}
+        {% endblock %}
+        {% include 'template/current-character.html.twig' %}
+    </div>
+
+    {% include 'template/footer.html.twig' %}
+    {% include 'template/js.html.twig' %}
+    {% block javascripts %}
+    {% endblock %}
+</body>
+</html>
+
