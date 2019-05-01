@@ -38,6 +38,18 @@ class GameUserCharacterRepository extends ServiceEntityRepository
                 ->getOneOrNullResult();
     }
 
+    public function getExpRequired($level)
+    {
+        $qb = $this->createQueryBuilder('game_user_character')
+            ->select('game_level.exp_required')
+            ->leftJoin('game_level', 'game_level', 'ON', 'game_user.level = :level')
+            ->setParameter('level', $level)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        return $qb;
+    }
+
     // /**
     //  * @return GameUserCharacter[] Returns an array of GameUserCharacter objects
     //  */

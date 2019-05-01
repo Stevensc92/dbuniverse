@@ -1,7 +1,23 @@
-{% set currentCharacter = game.getCurrentCharacter() %}
-<div id="current_character">
+{% set CC = game.getCurrentCharacter() %}
+<div id="current-character">
     <div class="avatar">
         {#{{ dump(currentCharacter.getCharacter) }}#}
         <img src="{{ asset('images/character/avatar/'~game.getAvatar()) | imagine_filter('game_avatar_current_char') }}" />
+    </div>
+
+    <div class="detail-character d-flex flex-column justify-content-center">
+        <span class="name">{{ CC.getCharacter().name }}</span>
+        <span class="level">Niveau : <span>{{ CC.level }}</span></span>
+        <span class="cut"></span>
+        <span class="experience">Expérience : <span>{{ CC.experience }}</span></span>
+        <span class="nextLevel">
+            <span class="barre-experience">
+                <span class="progression" style="width: {{ game.getPercentExp()}}%">
+                    <span title="{{ game.getPercentExp() }}%" class="percent"></span>
+                </span>
+            </span>
+        </span>
+        <span class="cut"></span>
+        <span class="zenis">Zénis : <span>{{ game.getZenis() }}</span></span>
     </div>
 </div>

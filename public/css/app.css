@@ -317,7 +317,7 @@ span.error, span.success
 }
 
 
-#current_character
+#current-character
 {
     background: url("../images/perso_en_cours/background.png");
     width: 190px;
@@ -328,15 +328,84 @@ span.error, span.success
     text-align: center;
 }
 
-#current_character .avatar
+#current-character .avatar
 {
     position: relative;
     left: 28px;
-    top: 26px;
+    top: 27px;
     width: 133px;
     height: 179px;
 }
 
+#current-character .avatar img { border-top-left-radius:8px; border-top-right-radius: 8px; }
+
+#current-character .detail-character
+{
+    margin-top: 25px;
+}
+
+#current-character .detail-character .name
+{
+    color: #ffeb9e;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px gray;
+}
+
+#current-character .detail-character .level > span,
+#current-character .detail-character .experience > span,
+#current-character .detail-character .zenis > span
+{
+    font-weight: bold;
+}
+
+#current-character .detail-character .nextLevel
+{
+    margin: 0 auto;
+}
+
+#current-character .detail-character .cut
+{
+    border-bottom: 2px solid black;
+    margin: 4px 0 8px 0;
+}
+
+#current-character .barre-experience, #current-character .progression
+{
+    display: block;
+    height: 10px;
+    width: 140px;
+
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -o-border-radius: 15px;
+    border-radius: 15px;
+}
+
+#current-character .barre-experience
+{
+    background-color: white;
+    margin: 0 0 5px;
+    border: 1px solid #A7580C;
+
+    -moz-box-shadow: 1px 1px 4px #A7580C;
+    -webkit-box-shadow: 1px 1px 4px #A7580C;
+    -o-box-shadow: 1px 1px 4px #A7580C;
+    box-shadow: 1px 1px 4px #A7580C;
+}
+
+#current-character .progression
+{
+    background-color: #EFA544;
+    border-right: 1px solid orange;
+}
+
+#current-character .percent
+{
+    color: black;
+    display: block;
+    text-align: center;
+    font-size: 10px;
+}
 
 /**
     R E S P O N S I V E
