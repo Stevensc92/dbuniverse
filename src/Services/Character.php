@@ -18,7 +18,7 @@ class Character
 
     public function __construct(EntityManager $em, TokenStorage $tokenStorage)
     {
-        $this->em = $em;
+        $this->em           = $em;
         $this->tokenStorage = $tokenStorage;
     }
 
@@ -27,11 +27,9 @@ class Character
      */
     public function getCurrentCharacter()
     {
-        $user = $this->tokenStorage->getToken()->getUser();
-
+        $user               = $this->tokenStorage->getToken()->getUser();
         $idCurrentCharacter = $user->getGameUser()->getCurrentCharacter();
-
-        $currentCharacter = $this->em->getRepository('App:GameCharacter')->findOneBy(['id' => $idCurrentCharacter]);
+        $currentCharacter   = $this->em->getRepository('App:GameCharacter')->findOneBy(['id' => $idCurrentCharacter]);
 
         $character = $this->em->getRepository('App:GameUserCharacter')
                     ->findCurrentCharacter($user, $currentCharacter)
@@ -45,9 +43,9 @@ class Character
      */
     public function getAvatar()
     {
-        $currentCharacter = $this->getCurrentCharacter();
+        $currentCharacter   = $this->getCurrentCharacter();
 
-        $avatarRepo = $this->em->getRepository('App:GameCharacterAvatar');
+        $avatarRepo         = $this->em->getRepository('App:GameCharacterAvatar');
 
         /** @var GameCharacterAvatar $avatar */
         $avatar = $avatarRepo->findOneBy([
@@ -68,26 +66,26 @@ class Character
 
     public function getPercentExp()
     {
-        $CC = $this->getCurrentCharacter();
-        $experience = $CC->getExperience();
-        $level = $CC->getLevel();
+        $CC             = $this->getCurrentCharacter();
+        $experience     = $CC->getExperience();
+        $level          = $CC->getLevel();
 
         /** @var GameLevelRepository $gameLevelRepo */
-        $gameLevelRepo = $this->em->getRepository('App:GameLevel');
+        $gameLevelRepo  = $this->em->getRepository('App:GameLevel');
 
         if ($level === 1) {
             $level += 1;
 
-            $expRequired = $gameLevelRepo->findOneBy(['level' => $level])->getExperienceRequired();
-            $percent = ceil( ($experience * 100) / $expRequired);
+            $expRequired    = $gameLevelRepo->findOneBy(['level' => $level])->getExperienceRequired();
+            $percent        = ceil( ($experience * 100) / $expRequired);
         } else {
             $expRequiredCurrentLevel = $gameLevelRepo->findOneBy(['level' => $level])->getExperienceRequired();
             $level += 1;
-            $expRequiredNextLevel = $gameLevelRepo->findOneBy(['level' => $level])->getExperienceRequired();
+            $expRequiredNextLevel    = $gameLevelRepo->findOneBy(['level' => $level])->getExperienceRequired();
 
             $expRequired = $expRequiredNextLevel - $expRequiredCurrentLevel;
             $experience -= $expRequiredCurrentLevel;
-            $percent = ceil( ($experience * 100) / $expRequired );
+            $percent     = ceil( ($experience * 100) / $expRequired );
         }
 
         if ($percent > 100) {
@@ -101,13 +99,71 @@ class Character
 
     public function getZenis()
     {
-        $user = $this->tokenStorage->getToken()->getUser();
+        $user           = $this->tokenStorage->getToken()->getUser();
 
-        $gameUserRepo = $this->em->getRepository('App:GameUser');
+        $gameUserRepo   = $this->em->getRepository('App:GameUser');
 
         /** @var GameUser $gameUser */
-        $gameUser = $gameUserRepo->find($user);
+        $gameUser       = $gameUserRepo->find($user);
 
         return $gameUser->getZenis();
+    }
+
+    public function getDamageInFight($where = 'page-character')
+    {
+        $CC         = $this->getCurrentCharacter();
+        
+        $power      = $CC->getPower();
+        $defense    = $CC->getDefense();
+        $magic      = $CC->getMagic();
+
+        $damageMax  = ($power > 0) ? ceil( ceil(exp(2)) * pow($power, 0.85)) : 0;
+        $damageMin  = ($power > 0) ? ceil($damageMax * 0.65) : 0;
+
+        $defenseMax = ($defense > 0) ? ceil( ceil(exp(2)) * pow($defense, 0.756)) : 0;
+        $defenseMin = ($defense > 0) ? ceil($defenseMax * 0.40) : 0;
+
+        $magicMax   = ($magic > 0) ? ceil( ceil(exp(2.85)) * pow($magic, 0.75)) : 0;
+        $magicMin   = ($magic > 0) ? ceil($magicMax * 0.65) : 0;
+
+        if ($where === 'fight') {
+            $array = [
+                'degat_max' => $damageMax,
+                'degat_min' => $damageMin,
+                'def_max'   => $defenseMax,
+                'def_min'   => $defenseMin,
+                'magie_max' => $magicMax,
+                'magie_min' => $magicMin,
+            ];
+        } else {
+            $array = [
+                'Dégâts Max'    => $damageMax,
+                'Dégâts Min'    => $damageMin,
+                'Défense Max'   => $defenseMax,
+                'Défense Min'   => $defenseMin,
+                'Magie Max'     => $magicMax,
+                'Magie Min'     => $magicMin,
+            ];
+        }
+
+        return $array;
+    }
+
+    public function getExpToUp()
+    {
+        $CC             = $this->getCurrentCharacter();
+        $experience     = $CC->getExperience();
+        $user           = $this->tokenStorage->getToken()->getUser();
+
+        $gameLevelRepo  = $this->em->getRepository('App:GameLevel');
+        $expRequired    = $gameLevelRepo->findOneBy(['level' => ($CC->getLevel())+1])->getExperienceRequired();
+
+        if ($expRequired) {
+            $expToGo = $expRequired - $experience;
+        } else {
+            $expToGo = $gameLevelRepo->findOneBy([], ['id' => 'DESC'])->getExperienceRequired();
+        }
+
+        return $expToGo;
     }
 }

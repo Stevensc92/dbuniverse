@@ -2,10 +2,65 @@
 
 {% extends 'base.html.twig' %}
 
+{% set CC = game.getCurrentCharacter() %}
 
 {% block body %}
-<div id="info-character">
-    <div id="infos-char">
+<div id="info-character" class="d-flex">
+    <div id="content-left">
+        <div id="info-char" class="d-flex justify-content-between">
+            <ul id="list-stat" class="characteristic align-self-end list-unstyled">
+                <li><span class="title">Puissance</span> <span class="number align-self-end">{{ CC.power }}</span></li>
+                <li><span class="title">Défense</span> <span class="number">{{ CC.defense }}</span></li>
+                <li><span class="title">Magie</span> <span class="number">{{ CC.magic }}</span></li>
+                <li><span class="title">Chance</span> <span class="number">{{ CC.luck }}</span></li>
+                <li><span class="title">Vitesse</span> <span class="number">{{ CC.speed }}</span></li>
+                <li><span class="title">Concentration</span> <span class="number">{{ CC.concentration }}</span></li>
+                <li><span class="title">Vie</span> <span class="number">{{ CC.life }}</span></li>
+                <li><span class="title">Énergie</span> <span class="number">{{ CC.energy }}</span></li>
+            </ul>
+
+            <div class="avatar">
+                <img src="{{ asset('images/character/avatar/'~game.getAvatar()) | imagine_filter('page_character') }}" />
+            </div>
+        </div>
+
+        <div id="experience" class="ml-4 mt-5">
+            <div class="experience-number">
+                <span class="number">{{ CC.experience }}</span> <span class="title">point d'expériences</span>
+            </div>
+
+            <div class="character-bar-experience" title="{{ game.getPercentExp() }}%">
+                <span class="progression" style="width:{{ game.getPercentExp() }}%"></span>
+            </div>
+
+            <div class="exp-to-up">
+                Il vous manque <span class="font-weight-bold">{{ game.getExpToUp() }}</span> points d'expériences avant de passer au niveau suivant.
+            </div>
+        </div>
+    </div>
+    
+    <div id="statistics" class="d-flex flex-column">
+        <h1 class="name-character">{{ CC.character.name }}</h1>
+
+        <span class="sub-title">Statistique Fight</span>
+        <div class="stat-fight">
+            <ul class="characteristic list-unstyled align-self-end">
+                <li><span class="title">Victoire</span> <span class="number">{{ CC.win }}</span></li>
+                <li><span class="title">Défaite</span> <span class="number">{{ CC.loose }}</span></li>
+                <li><span class="title">Draw</span> <span class="number">{{ CC.draw }}</span></li>
+                <li><span class="title">Mort</span> <span class="number">{{ CC.death }}</span></li>
+                <li><span class="title">Kill</span> <span class="number">{{ CC.kill }}</span></li>
+            </ul>
+        </div>
+
+        <span class="sub-title">Puissance</span>
+        <div class="power-fight">
+            <ul class="characteristic list-unstyled">
+                {% for title, number in game.getDamageInFight() %}
+                    <li><span class="title">{{ title }}</span> <span class="number">{{ number }}</span></li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </div>
 {% endblock %}

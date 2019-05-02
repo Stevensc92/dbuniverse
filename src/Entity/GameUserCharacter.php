@@ -107,7 +107,7 @@ class GameUserCharacter
     /**
      * @ORM\Column(type="integer")
      */
-    private $killed;
+    private $kill;
 
     /**
      * @ORM\Column(type="integer")
@@ -356,14 +356,14 @@ class GameUserCharacter
         return $this;
     }
 
-    public function getKilled(): ?int
+    public function getKill(): ?int
     {
-        return $this->killed;
+        return $this->kill;
     }
 
-    public function setKilled(int $killed): self
+    public function setKill(int $kill): self
     {
-        $this->killed = $killed;
+        $this->kill = $kill;
 
         return $this;
     }

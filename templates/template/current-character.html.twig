@@ -1,8 +1,8 @@
 {% set CC = game.getCurrentCharacter() %}
-<div id="current-character">
+<div id="current-character" class="mr-4">
     <div class="avatar">
         {#{{ dump(currentCharacter.getCharacter) }}#}
-        <img src="{{ asset('images/character/avatar/'~game.getAvatar()) | imagine_filter('game_avatar_current_char') }}" />
+        <img src="{{ asset('images/character/avatar/'~game.getAvatar()) | imagine_filter('current_character_front') }}" />
     </div>
 
     <div class="detail-character d-flex flex-column justify-content-center">

@@ -315,6 +315,9 @@ span.error, span.success
     width: auto;
 }
 
+/**
+    C U R R E N T  -  C H A R A C T E R
+ */
 
 #current-character
 {
@@ -328,7 +331,7 @@ span.error, span.success
 {
     position: relative;
     left: 28px;
-    top: 27px;
+    top: 26px;
     width: 133px;
     height: 179px;
 }
@@ -403,6 +406,9 @@ span.error, span.success
     font-size: 10px;
 }
 
+/**
+    P A G E  -  C H A R A C T E R
+ */
 
 
 #info-character
@@ -412,6 +418,142 @@ span.error, span.success
     height: 510px;
 }
 
+#info-character #info-char
+{
+    width: 583px;
+    height: 337px;
+    margin-left: 18px;
+}
+
+#info-character #info-char ul#list-stat
+{
+    width: 338px;
+    height: 150px;
+    line-height: 1.18;
+    margin-left: 25px;
+}
+
+#info-character #info-char .avatar
+{
+    margin-top: 50px;
+    margin-right: 24px;
+}
+
+#info-character #experience
+{
+    width: 583px;
+    height: 156px;
+}
+
+#info-character #experience .experience-number
+{
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+#info-character #experience .number
+{
+    font-weight: bold;
+}
+
+#info-character #experience .title
+{
+    font-style: italic;
+}
+
+#info-character #experience .character-bar-experience,
+#info-character #experience .progression
+{
+    display: block;
+    height: 30px;
+    width: 500px;
+
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -o-border-radius: 15px;
+    border-radius: 15px;
+    margin-left: 50px;
+}
+
+#info-character #experience .character-bar-experience
+{
+    margin: 0 auto 10px auto;
+    background-color: white;
+
+    -moz-box-shadow: 1px 1px 4px #999;
+    -webkit-box-shadow: 1px 1px 4px #999;
+    -o-box-shadow: 1px 1px 4px #999;
+    box-shadow: 1px 1px 4px #999;
+}
+
+#info-character #experience .progression
+{
+    background-color: rgb(253,205,73);
+    margin: 0 0 5px;
+    -moz-box-shadow: 1px 1px 4px #999;
+    -webkit-box-shadow: 1px 1px 4px #999;
+    -o-box-shadow: 1px 1px 4px #999;
+    box-shadow: 1px 1px 4px #999;
+}
+
+#info-character #experience .exp-to-up
+{
+    font-size: 16px;
+}
+
+#info-character .characteristic li span
+{
+    display: inline-block;
+}
+
+#info-character .characteristic span.title
+{
+    font-style: italic;
+    font-weight: bold;
+    color: #fff;
+}
+
+#info-character .characteristic span.number
+{
+    font-weight: bold;
+    float: right;
+}
+
+
+#info-character #statistics
+{
+    width: 229px;
+    height: 504px;
+    padding-top: 2rem!important;
+}
+
+#info-character #statistics .name-character
+{
+    font-size: 24px;
+    font-weight: bold;
+    font-style: italic;
+    text-shadow: 1px 3px 10px white;
+    text-align: center;
+    font-family: "Comic Sans MS", sans-serif;
+}
+
+#info-character #statistics .sub-title
+{
+    font-size: 20px;
+    display: block;
+    text-decoration: underline;
+    text-align: center;
+    line-height: 1;
+    margin-bottom: 6px;
+}
+
+#info-character #statistics .stat-fight ul,
+#info-character #statistics .power-fight ul
+{
+    margin-left: 2px;
+}
 
 /**
     R E S P O N S I V E

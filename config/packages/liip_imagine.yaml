@@ -1,6 +1,10 @@
 liip_imagine:
     filter_sets:
-        game_avatar_current_char:
+        current_character_front:
             quality: 100
             filters:
-                thumbnail: { size: [133, 179], mode: inset }
+                thumbnail: { size: [133, 179], mode: outbound }
+        page_character:
+            quality: 100
+            filters:
+                thumbnail: { size: [178, 268], mode: outbound }
