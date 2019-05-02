@@ -78,7 +78,7 @@ class Character
 
             $expRequired    = $gameLevelRepo->findOneBy(['level' => $level])->getExperienceRequired();
             $percent        = ceil( ($experience * 100) / $expRequired);
-        } else {
+        } else if ($level < 100) {
             $expRequiredCurrentLevel = $gameLevelRepo->findOneBy(['level' => $level])->getExperienceRequired();
             $level += 1;
             $expRequiredNextLevel    = $gameLevelRepo->findOneBy(['level' => $level])->getExperienceRequired();
@@ -86,6 +86,8 @@ class Character
             $expRequired = $expRequiredNextLevel - $expRequiredCurrentLevel;
             $experience -= $expRequiredCurrentLevel;
             $percent     = ceil( ($experience * 100) / $expRequired );
+        } else {
+            $percent = 0;
         }
 
         if ($percent > 100) {
@@ -156,10 +158,10 @@ class Character
         $user           = $this->tokenStorage->getToken()->getUser();
 
         $gameLevelRepo  = $this->em->getRepository('App:GameLevel');
-        $expRequired    = $gameLevelRepo->findOneBy(['level' => ($CC->getLevel())+1])->getExperienceRequired();
+        $expRequired    = $gameLevelRepo->findOneBy(['level' => ($CC->getLevel())+1]);
 
-        if ($expRequired) {
-            $expToGo = $expRequired - $experience;
+        if ($expRequired !== null) {
+            $expToGo = $expRequired->getExperienceRequired() - $experience;
         } else {
             $expToGo = $gameLevelRepo->findOneBy([], ['id' => 'DESC'])->getExperienceRequired();
         }
