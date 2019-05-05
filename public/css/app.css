@@ -75,6 +75,16 @@ body
     font-weight: bold;
 }
 
+#list-character
+{
+    background-color: rgba(123,165,238, 0.5);
+    position: absolute;
+    left: 415px;
+    border-style: solid;
+    border-width: 0 2px 2px 2px;
+    z-index:9999;
+}
+
 /**
     N A V B A R
         L E F T

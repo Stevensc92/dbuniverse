@@ -173,4 +173,13 @@ class Character
 
         return $expToGo;
     }
+
+    public function getListCharacterForUser()
+    {
+        $gameUserCharacterRepository = $this->em->getRepository('App:GameUserCharacter');
+
+        $userCharacters = $gameUserCharacterRepository->findBy(['user' => $this->tokenStorage->getToken()->getUser()]);
+
+        return $userCharacters;
+    }
 }

@@ -13,13 +13,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Yaml\Yaml;
 
 class AppController extends Controller
 {
     /**
      * @Route("/", name="index")
      */
-    public function index(Request $request,  UserPasswordEncoderInterface $passwordEncoder, Character $character)
+    public function index(Request $request,  UserPasswordEncoderInterface $passwordEncoder)
     {
         if ($this->isGranted('IS_AUTHENTICATED_ANONYMOUSLY') && !$this->isGranted('ROLE_USER')) {
             // création du formulaire
@@ -45,14 +46,17 @@ class AppController extends Controller
                 // Create game user list character
                 $characterRepository = $em->getRepository('App:GameCharacter');
 
-                /** @var GameCharacter $character */
-                $character = $characterRepository->findOneBy(['id' => 1]);
+                $defaultCharacters = Yaml::parseFile('../config/dataGame/defaultCharacters.yaml');
+                foreach ($defaultCharacters['id'] as $id) {
+                    /** @var GameCharacter $character */
+                    $character = $characterRepository->findOneBy(['id' => $id]);
 
-                $gameUserCharacter = new GameUserCharacter();
-                $gameUserCharacter->setUserId($user)
-                                  ->setCharacter($character);
+                    $gameUserCharacter = new GameUserCharacter();
+                    $gameUserCharacter->setUserId($user)
+                        ->setCharacter($character);
+                    $em->persist($gameUserCharacter);
+                }
 
-                $em->persist($gameUserCharacter);
                 $em->persist($gameUser);
                 $em->persist($user);
 
@@ -73,4 +77,21 @@ class AppController extends Controller
         }
     }
 
+    /**
+     * @Route("/change-cc/{slug}", name="change-cc")
+     */
+    public function changeCC(Request $request)
+    {
+        $em                 = $this->getDoctrine()->getManager();
+        $slug               = $request->get('slug');
+        $gameCharacterRepo  = $em->getRepository('App:GameCharacter');
+        $gameCharacter      = $gameCharacterRepo->findOneBy(['slug' => $slug]);
+        $gameUser           = $this->getUser()->getGameUser();
+
+        $gameUser->setCurrentCharacter($gameCharacter->getId());
+
+        $em->persist($gameUser);
+        $em->flush();
+        return $this->redirect($request->headers->get('referer'));
+    }
 }
