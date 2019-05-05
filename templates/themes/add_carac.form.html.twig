@@ -1,0 +1,130 @@
+{% block _add_carac_points_to_distribute_row %}
+    <div class="form-group row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-8">
+            Il vous reste
+            <span class="points-left font-weight-bold">&nbsp;{{ value }} point{% if value > 1 %}s{% endif %}&nbsp;</span>
+            de caractéristique à distribuer.
+        </div>
+    </div>
+{% endblock %}
+
+{% block _add_carac_power_row %}
+    <div class="form-group row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-3 col-form-label">
+            <img src="{{ asset('images/character/carac-icons/power.svg') }}" class="carac-icons"/> <span class="carac-name">Puissance</span></div>
+        <div class="col-sm-2">
+            <input type="number" class="" {{ block('widget_attributes') }} disabled value="{{ value }}"/>
+        </div>
+        <div class="separator">+</div>
+        <div class="col-sm-2">
+            <input type="number" min="0" name="add_power" class="input-add-carac" />
+        </div>
+    </div>
+{% endblock %}
+
+{% block _add_carac_defense_row %}
+    <div class="form-group row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-3 col-form-label">
+            <img src="{{ asset('images/character/carac-icons/shield.svg') }}" class="carac-icons"/> <span class="carac-name">Défense</span></div>
+        <div class="col-sm-2">
+            <input type="number" class="" {{ block('widget_attributes') }} disabled value="{{ value }}"/>
+        </div>
+        <div class="separator">+</div>
+        <div class="col-sm-2">
+            <input type="number" min="0" name="add_defense" class="input-add-carac" />
+        </div>
+    </div>
+{% endblock %}
+
+{% block _add_carac_magic_row %}
+    <div class="form-group row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-3 col-form-label">
+            <img src="{{ asset('images/character/carac-icons/magic.svg') }}" class="carac-icons"/> <span class="carac-name">Magie</span></div>
+        <div class="col-sm-2">
+            <input type="number" class="" {{ block('widget_attributes') }} disabled value="{{ value }}"/>
+        </div>
+        <div class="separator">+</div>
+        <div class="col-sm-2">
+            <input type="number" min="0" name="add_magic" class="input-add-carac" />
+        </div>
+    </div>
+{% endblock %}
+
+{% block _add_carac_luck_row %}
+    <div class="form-group row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-3 col-form-label">
+            <img src="{{ asset('images/character/carac-icons/luck.svg') }}" class="carac-icons"/> <span class="carac-name">Chance</span></div>
+        <div class="col-sm-2">
+            <input type="number" class="" {{ block('widget_attributes') }} disabled value="{{ value }}"/>
+        </div>
+        <div class="separator">+</div>
+        <div class="col-sm-2">
+            <input type="number" min="0" name="add_luck" class="input-add-carac" />
+        </div>
+    </div>
+{% endblock %}
+
+{% block _add_carac_speed_row %}
+    <div class="form-group row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-3 col-form-label">
+            <img src="{{ asset('images/character/carac-icons/speed.svg') }}" class="carac-icons"/> <span class="carac-name">Vitesse</span></div>
+        <div class="col-sm-2">
+            <input type="number" class="" {{ block('widget_attributes') }} disabled value="{{ value }}"/>
+        </div>
+        <div class="separator">+</div>
+        <div class="col-sm-2">
+            <input type="number" min="0" name="add_speed" class="input-add-carac" />
+        </div>
+    </div>
+{% endblock %}
+
+{% block _add_carac_concentration_row %}
+    <div class="form-group row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-3 col-form-label">
+            <img src="{{ asset('images/character/carac-icons/concentration.svg') }}" class="carac-icons"/> <span class="carac-name">Concentration</span></div>
+        <div class="col-sm-2">
+            <input type="number" class="" {{ block('widget_attributes') }} disabled value="{{ value }}"/>
+        </div>
+        <div class="separator">+</div>
+        <div class="col-sm-2">
+            <input type="number" min="0" name="add_concentration" class="input-add-carac" />
+        </div>
+    </div>
+{% endblock %}
+
+{% block _add_carac_life_row %}
+    <div class="form-group row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-3 col-form-label">
+            <img src="{{ asset('images/character/carac-icons/life.svg') }}" class="carac-icons"/> <span class="carac-name">Vie</span></div>
+        <div class="col-sm-2">
+            <input type="number" class="" {{ block('widget_attributes') }} disabled value="{{ value }}"/>
+        </div>
+        <div class="separator">+</div>
+        <div class="col-sm-2">
+            <input type="number" min="0" step="100" name="add_life" class="input-add-carac" />
+        </div>
+    </div>
+{% endblock %}
+
+{% block _add_carac_energy_row %}
+    <div class="form-group row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-3 col-form-label">
+            <img src="{{ asset('images/character/carac-icons/energy.svg') }}" class="carac-icons"/> <span class="carac-name">Énergie</span></div>
+        <div class="col-sm-2">
+            <input type="number" class="" {{ block('widget_attributes') }} disabled value="{{ value }}"/>
+        </div>
+        <div class="separator">+</div>
+        <div class="col-sm-2">
+            <input type="number" min="0" step="5" name="add_energy" class="input-add-carac" />
+        </div>
+    </div>
+{% endblock %}

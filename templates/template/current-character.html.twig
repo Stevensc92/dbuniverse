@@ -1,12 +1,10 @@
-{% set CC = game.getCurrentCharacter() %}
 <div id="current-character" class="mr-4">
     <div class="avatar">
-        {#{{ dump(currentCharacter.getCharacter) }}#}
         <img src="{{ asset('images/character/avatar/'~game.getAvatar()) | imagine_filter('current_character_front') }}" />
     </div>
 
     <div class="detail-character d-flex flex-column justify-content-center">
-        <span class="name">{{ CC.getCharacter().name }}</span>
+        <span class="name">{{ character.name }}</span>
         <span class="level">Niveau : <span>{{ CC.level }}</span></span>
         <span class="cut"></span>
         <span class="experience">Expérience : <span>{{ CC.experience }}</span></span>

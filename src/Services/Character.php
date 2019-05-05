@@ -119,13 +119,18 @@ class Character
         $defense    = $CC->getDefense();
         $magic      = $CC->getMagic();
 
+        $levelPow   = 1 + ($CC->getLevel() / 10);
+
         $damageMax  = ($power > 0) ? ceil( ceil(exp(2)) * pow($power, 0.85)) : 0;
+        $damageMax  = ceil($damageMax * $levelPow);
         $damageMin  = ($power > 0) ? ceil($damageMax * 0.65) : 0;
 
         $defenseMax = ($defense > 0) ? ceil( ceil(exp(2)) * pow($defense, 0.756)) : 0;
+        $defenseMax = ceil($defenseMax * $levelPow);
         $defenseMin = ($defense > 0) ? ceil($defenseMax * 0.40) : 0;
 
         $magicMax   = ($magic > 0) ? ceil( ceil(exp(2.85)) * pow($magic, 0.75)) : 0;
+        $magicMax   = ceil($magicMax * $levelPow);
         $magicMin   = ($magic > 0) ? ceil($magicMax * 0.65) : 0;
 
         if ($where === 'fight') {
@@ -139,12 +144,12 @@ class Character
             ];
         } else {
             $array = [
-                'Dégâts Max'    => $damageMax,
-                'Dégâts Min'    => $damageMin,
-                'Défense Max'   => $defenseMax,
-                'Défense Min'   => $defenseMin,
-                'Magie Max'     => $magicMax,
-                'Magie Min'     => $magicMin,
+                'Dégâts max'    => $damageMax,
+                'Dégâts min'    => $damageMin,
+                'Défense max'   => $defenseMax,
+                'Défense min'   => $defenseMin,
+                'Magie max'     => $magicMax,
+                'Magie min'     => $magicMin,
             ];
         }
 

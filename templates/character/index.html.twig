@@ -2,65 +2,301 @@
 
 {% extends 'base.html.twig' %}
 
-{% set CC = game.getCurrentCharacter() %}
-
 {% block body %}
-<div id="info-character" class="d-flex">
-    <div id="content-left">
-        <div id="info-char" class="d-flex justify-content-between">
-            <ul id="list-stat" class="characteristic align-self-end list-unstyled">
-                <li><span class="title">Puissance</span> <span class="number align-self-end">{{ CC.power }}</span></li>
-                <li><span class="title">Défense</span> <span class="number">{{ CC.defense }}</span></li>
-                <li><span class="title">Magie</span> <span class="number">{{ CC.magic }}</span></li>
-                <li><span class="title">Chance</span> <span class="number">{{ CC.luck }}</span></li>
-                <li><span class="title">Vitesse</span> <span class="number">{{ CC.speed }}</span></li>
-                <li><span class="title">Concentration</span> <span class="number">{{ CC.concentration }}</span></li>
-                <li><span class="title">Vie</span> <span class="number">{{ CC.life }}</span></li>
-                <li><span class="title">Énergie</span> <span class="number">{{ CC.energy }}</span></li>
-            </ul>
+    {% if CC.pointsToDistribute > 0 and form is defined %}
+        {% form_theme form 'themes/add_carac.form.html.twig' %}
+    {% endif %}
+    <div id="info-character" class="d-flex">
+        <div id="content-left">
+            <div id="info-char" class="d-flex justify-content-between">
+                <div class="align-self-end">
+                    <ul id="list-stat" class="characteristic list-unstyled">
+                        <li><span class="title">Puissance</span> <span class="number" data-carac="power">{{ CC.power }}</span></li>
+                        <li><span class="title">Défense</span> <span class="number" data-carac="defense">{{ CC.defense }}</span></li>
+                        <li><span class="title">Magie</span> <span class="number" data-carac="magic">{{ CC.magic }}</span></li>
+                        <li><span class="title">Chance</span> <span class="number" data-carac="luck">{{ CC.luck }}</span></li>
+                        <li><span class="title">Vitesse</span> <span class="number" data-carac="speed">{{ CC.speed }}</span></li>
+                        <li><span class="title">Concentration</span> <span class="number" data-carac="concentration">{{ CC.concentration }}</span></li>
+                        <li><span class="title">Vie</span> <span class="number" data-carac="life">{{ CC.life }}</span></li>
+                        <li><span class="title">Énergie</span> <span class="number" data-carac="energy">{{ CC.energy }}</span></li>
+                    </ul>
 
-            <div class="avatar">
-                <img src="{{ asset('images/character/avatar/'~game.getAvatar()) | imagine_filter('page_character') }}" />
+
+                </div>
+
+                <div class="avatar">
+                    <img src="{{ asset('images/character/avatar/'~game.getAvatar()) | imagine_filter('page_character') }}" />
+                </div>
+            </div>
+
+            <div id="experience" class="ml-4 mt-5">
+                <div class="experience-number">
+                    <span class="number">{{ CC.experience }}</span> <span class="title">point d'expériences</span>
+                </div>
+
+                <div class="character-bar-experience" title="{{ game.getPercentExp() }}%">
+                    <span class="progression" style="width:{{ game.getPercentExp() }}%"></span>
+                </div>
+
+                <div class="exp-to-up">
+                    Il vous manque <span class="font-weight-bold">{{ game.getExpToUp() }}</span> points d'expériences avant de passer au niveau suivant.
+                </div>
             </div>
         </div>
 
-        <div id="experience" class="ml-4 mt-5">
-            <div class="experience-number">
-                <span class="number">{{ CC.experience }}</span> <span class="title">point d'expériences</span>
+        <div id="statistics" class="d-flex flex-column">
+            <h1 class="name-character">{{ CC.character.name }}</h1>
+
+            <span class="sub-title">Statistique Fight</span>
+            <div class="stat-fight">
+                <ul class="characteristic list-unstyled align-self-end">
+                    <li><span class="title">Victoire</span> <span class="number">{{ CC.win }}</span></li>
+                    <li><span class="title">Défaite</span> <span class="number">{{ CC.loose }}</span></li>
+                    <li><span class="title">Draw</span> <span class="number">{{ CC.draw }}</span></li>
+                    <li><span class="title">Mort</span> <span class="number">{{ CC.death }}</span></li>
+                    <li><span class="title">Kill</span> <span class="number">{{ CC.frag }}</span></li>
+                </ul>
             </div>
 
-            <div class="character-bar-experience" title="{{ game.getPercentExp() }}%">
-                <span class="progression" style="width:{{ game.getPercentExp() }}%"></span>
+            <span class="sub-title">Puissance</span>
+            <div class="power-fight">
+                <ul class="characteristic list-unstyled">
+                    {% for title, number in game.getDamageInFight() %}
+                        <li><span class="title">{{ title }}</span> <span class="number">{{ number }}</span></li>
+                    {% endfor %}
+                </ul>
             </div>
 
-            <div class="exp-to-up">
-                Il vous manque <span class="font-weight-bold">{{ game.getExpToUp() }}</span> points d'expériences avant de passer au niveau suivant.
-            </div>
+            {% if CC.pointsToDistribute > 0 and form is defined %}
+                <span class="toggle-form-add-carac">
+                    Vous avez <span class="font-weight-bold">{{ CC.pointsToDistribute }}</span>
+                    point{% if CC.pointsToDistribute > 1 %}s{% endif %} de caractéristique à distribuer.
+                </span>
+            {% endif %}
         </div>
     </div>
-    
-    <div id="statistics" class="d-flex flex-column">
-        <h1 class="name-character">{{ CC.character.name }}</h1>
 
-        <span class="sub-title">Statistique Fight</span>
-        <div class="stat-fight">
-            <ul class="characteristic list-unstyled align-self-end">
-                <li><span class="title">Victoire</span> <span class="number">{{ CC.win }}</span></li>
-                <li><span class="title">Défaite</span> <span class="number">{{ CC.loose }}</span></li>
-                <li><span class="title">Draw</span> <span class="number">{{ CC.draw }}</span></li>
-                <li><span class="title">Mort</span> <span class="number">{{ CC.death }}</span></li>
-                <li><span class="title">Kill</span> <span class="number">{{ CC.kill }}</span></li>
-            </ul>
-        </div>
+    {% if CC.pointsToDistribute > 0 and form is defined %}
+    <div id="form-add-carac" class="d-none">
+        <div class="back"><i class="fas fa-long-arrow-alt-left"></i> Retour</div>
+        <div class="text-center mb-3">
 
-        <span class="sub-title">Puissance</span>
-        <div class="power-fight">
-            <ul class="characteristic list-unstyled">
-                {% for title, number in game.getDamageInFight() %}
-                    <li><span class="title">{{ title }}</span> <span class="number">{{ number }}</span></li>
-                {% endfor %}
-            </ul>
         </div>
+        {{ form_start(form) }}
+            {{ form_row(form.points_to_distribute) }}
+            {{ form_row(form.power) }}
+            {{ form_row(form.defense) }}
+            {{ form_row(form.magic) }}
+            {{ form_row(form.luck) }}
+            {{ form_row(form.speed) }}
+            {{ form_row(form.concentration) }}
+            {{ form_row(form.life) }}
+            {{ form_row(form.energy) }}
+            <div class="form-group row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-8">
+                    <button type="submit" class="btn btn-primary">Ajouter les points</button>
+                </div>
+            </div>
+        {{ form_end(form) }}
     </div>
-</div>
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    {% if CC.pointsToDistribute > 0 and form is defined %}
+    <script type="text/javascript">
+        jQuery(function($){
+            var $divForm        = $('#form-add-carac');
+            var $character      = $('#info-character');
+            var $form           = $('form[name="add_carac"]');
+            var $inputAddCarac  = $('.input-add-carac');
+            var pointsLeft;
+
+            $inputAddCarac.each(function() {
+                let name = $(this).attr('name');
+                let max;
+
+                switch (name) {
+                    case "add_life":
+                        max = parseInt({{ CC.pointsToDistribute }}) * 100;
+                    break;
+
+                    case "add_energy":
+                        max = parseInt({{ CC.pointsToDistribute }}) * 5;
+                    break;
+
+                    default:
+                        max = {{ CC.pointsToDistribute }};
+                    break;
+                }
+               $(this).attr('max', max);
+            });
+
+
+            $('.toggle-form-add-carac').on('click', function() {
+                $divForm.toggleClass('d-none');
+                $character.addClass('d-none').removeClass('d-flex');
+            });
+
+            $('#form-add-carac .back').on('click', function() {
+               $divForm.toggleClass('d-none');
+               $character.addClass('d-flex').removeClass('d-none');
+            });
+
+            $inputAddCarac.on('change', function(e) {
+                // let pointsLeft = 0;
+                let pointsSet = 0;
+
+                $('.input-add-carac').each(function() {
+                    let $val = $(this).val();
+                    let name = $(this).attr('name');
+                    switch (name) {
+                        case "add_life":
+                            $val = parseInt($(this).val()) / 100;
+                        break;
+
+                        case "add_energy":
+                            $val = parseInt($(this).val()) / 5;
+                        break;
+
+                        default:
+                            $val = $(this).val();
+                        break;
+                    }
+                    if ($val > 0 && pointsSet <= {{ CC.pointsToDistribute }}) {
+                        pointsSet = parseInt(pointsSet) + parseInt($val);
+                    }
+                });
+                pointsLeft  = {{ CC.pointsToDistribute }} - pointsSet;
+                let text        = (pointsLeft > 0) ? 'points' : 'point';
+
+                if (pointsLeft >= 0) {
+                    $('.points-left').html(pointsLeft + ' ' + text);
+                } else {
+                    let name = $(this).attr('name');
+                    let reduc;
+                    switch (name) {
+                        case "add_life":
+                            reduc = 100;
+                        break;
+
+                        case "add_energy":
+                            reduc = 5;
+                        break;
+
+                        default:
+                            reduc = 1;
+                        break;
+                    }
+                    
+                    $(this).val( ($(this).val()) - reduc );
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            $form.on('submit', function(e) {
+                e.preventDefault();
+
+                let path = '{{ path('add.carac') }}';
+                let data = $(this).serialize();
+
+                $.post(
+                    path,
+                    {
+                        data: data,
+                        pointsAvailable: {{ CC.pointsToDistribute }}
+                    },
+                    function(response) {
+                        var contentHtmlDamage = '';
+                        $('.input-add-carac').each(function() {
+                            let name = $(this).attr('name').split('_');
+                            let listCarac = $('#list-stat .number[data-carac="'+name[1]+'"]');
+                            let content = listCarac.html();
+                            let newContent = parseInt(content);
+
+                            let level = {{ CC.level }};
+                            let levelPow = parseFloat(1 + (level / 10));
+
+                            let multiplicator;
+
+                            switch(name[1]) {
+                                case "power":
+                                    multiplicator = 1;
+                                    let degMax      = Math.ceil( Math.ceil(Math.exp(2)) * Math.pow(newContent, 0.85) );
+                                    degMax          = Math.ceil(degMax * levelPow);
+                                    let degMin      = Math.ceil( degMax * 0.65);
+
+                                    contentHtmlDamage += '<li><span class="title">Dégâts max</span> <span class="number">'+degMax+'</span></li>';
+                                    contentHtmlDamage += '<li><span class="title">Dégâts min</span> <span class="number">'+degMin+'</span></li>';
+                                break;
+
+                                case "defense":
+                                    multiplicator = 1;
+                                    let defMax = Math.ceil( Math.ceil(Math.exp(2)) * Math.pow(newContent, 0.756) );
+                                    defMax     = Math.floor(defMax * levelPow);
+                                    let defMin = Math.ceil( defMax * 0.40);
+
+                                    contentHtmlDamage += '<li><span class="title">Défense max</span> <span class="number">'+defMax+'</span></li>';
+                                    contentHtmlDamage += '<li><span class="title">Défense min</span> <span class="number">'+defMin+'</span></li>';
+                                break;
+
+                                case "magic":
+                                    multiplicator = 1;
+                                    let magMax = Math.ceil( Math.ceil(Math.exp(2.85)) * Math.pow(newContent, 0.75) );
+                                    magMax     = Math.ceil(magMax * levelPow);
+                                    let magMin = Math.ceil( magMax * 0.65);
+
+                                    contentHtmlDamage += '<li><span class="title">Magie max</span> <span class="number">'+magMax+'</span></li>';
+                                    contentHtmlDamage += '<li><span class="title">Magie min</span> <span class="number">'+magMin+'</span></li>';
+                                break;
+
+                                case "life":
+                                    multiplicator = 100;
+                                break;
+
+                                case "energy":
+                                    multiplicator = 5;
+                                break;
+
+                                default:
+                                    multiplicator = 1;
+                                break;
+                            }
+
+                            if ($(this).val() > 0) {
+                                newContent = parseInt(content) + parseInt($(this).val());
+                                listCarac.html(newContent);
+                                $(this).val('');
+                            }
+
+                            let INTpointsLeft = parseInt(pointsLeft);
+
+                            console.log(INTpointsLeft * multiplicator);
+
+                            $(this).attr('max', parseInt(INTpointsLeft * multiplicator));
+
+
+
+                        });
+
+                        $('.toggle-form-add-carac span').html(pointsLeft);
+                        if (pointsLeft === 0) {
+                            $('.toggle-form-add-carac').addClass('d-none');
+                        }
+                        $('.power-fight .characteristic').html(contentHtmlDamage);
+
+                        $divForm.addClass('d-none');
+                        $character.addClass('d-flex').removeClass('d-none');
+                    }
+                );
+            });
+
+
+
+
+        });
+    </script>
+    {% endif %}
 {% endblock %}

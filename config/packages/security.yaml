@@ -35,3 +35,4 @@ security:
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/character, roles: ROLE_USER }

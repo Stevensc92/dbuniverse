@@ -107,7 +107,7 @@ class GameUserCharacter
     /**
      * @ORM\Column(type="integer")
      */
-    private $kill;
+    private $frag;
 
     /**
      * @ORM\Column(type="integer")
@@ -139,10 +139,10 @@ class GameUserCharacter
         $this->concentration = 10;
         $this->life = 1000;
         $this->energy = 500;
-        $this->ki = 1150;
+        $this->updateKi();
         $this->win = 0;
         $this->loose = 0;
-        $this->killed = 0;
+        $this->frag = 0;
         $this->death = 0;
         $this->draw = 0;
     }
@@ -236,6 +236,17 @@ class GameUserCharacter
         return $this;
     }
 
+    public function upPower(int $power)
+    {
+        if ($power < 0 || ($this->points_to_distribute - $power) < 0)
+            return false;
+
+        $this->power += $power;
+        $this->points_to_distribute -= $power;
+
+        return $this;
+    }
+
     public function getDefense(): ?int
     {
         return $this->defense;
@@ -244,6 +255,17 @@ class GameUserCharacter
     public function setDefense(int $defense): self
     {
         $this->defense = $defense;
+
+        return $this;
+    }
+
+    public function upDefense(int $defense)
+    {
+        if ($defense < 0 || ($this->points_to_distribute - $defense) < 0)
+            return false;
+
+        $this->defense += $defense;
+        $this->points_to_distribute -= $defense;
 
         return $this;
     }
@@ -260,6 +282,17 @@ class GameUserCharacter
         return $this;
     }
 
+    public function upMagic(int $magic)
+    {
+        if ($magic < 0 || ($this->points_to_distribute - $magic) < 0)
+            return false;
+
+        $this->magic += $magic;
+        $this->points_to_distribute -= $magic;
+
+        return $this;
+    }
+
     public function getLuck(): ?int
     {
         return $this->luck;
@@ -268,6 +301,17 @@ class GameUserCharacter
     public function setLuck(int $luck): self
     {
         $this->luck = $luck;
+
+        return $this;
+    }
+
+    public function upLuck(int $luck)
+    {
+        if ($luck < 0 || ($this->points_to_distribute - $luck) < 0)
+            return false;
+
+        $this->luck += $luck;
+        $this->points_to_distribute -= $luck;
 
         return $this;
     }
@@ -284,6 +328,17 @@ class GameUserCharacter
         return $this;
     }
 
+    public function upSpeed(int $speed)
+    {
+        if ($speed < 0 || ($this->points_to_distribute - $speed) < 0)
+            return false;
+
+        $this->speed += $speed;
+        $this->points_to_distribute -= $speed;
+
+        return $this;
+    }
+
     public function getConcentration(): ?int
     {
         return $this->concentration;
@@ -292,6 +347,17 @@ class GameUserCharacter
     public function setConcentration(int $concentration): self
     {
         $this->concentration = $concentration;
+
+        return $this;
+    }
+
+    public function upConcentration(int $concentration)
+    {
+        if ($concentration < 0 || ($this->points_to_distribute - $concentration) < 0)
+            return false;
+
+        $this->concentration += $concentration;
+        $this->points_to_distribute -= $concentration;
 
         return $this;
     }
@@ -308,6 +374,18 @@ class GameUserCharacter
         return $this;
     }
 
+    public function upLife(int $life)
+    {
+        if ($life < 0 || ($this->points_to_distribute - ($life / 100)) < 0)
+            return false;
+
+        /** 1 point for 100 */
+        $this->life += $life;
+        $this->points_to_distribute -= ($life / 100);
+
+        return $this;
+    }
+
     public function getEnergy(): ?int
     {
         return $this->energy;
@@ -316,6 +394,18 @@ class GameUserCharacter
     public function setEnergy(int $energy): self
     {
         $this->energy = $energy;
+
+        return $this;
+    }
+
+    public function upEnergy(int $energy)
+    {
+        if ($energy < 0 || ($this->points_to_distribute - ($energy / 5)) < 0)
+            return false;
+
+        /** 1 point for 5 */
+        $this->energy += $energy;
+        $this->points_to_distribute -= ($energy / 5);
 
         return $this;
     }
@@ -330,6 +420,27 @@ class GameUserCharacter
         $this->ki = $ki;
 
         return $this;
+    }
+
+    public function updateKi()
+    {
+        /**
+         *  force : 1 = 500
+            defense : 1 = 250
+            magie : 1 = 200
+            chance : 1 = 0
+            vitesse : 1 = 100
+            concentration : 1 = 100
+         */
+        $ki =
+            ($this->power * 500) +
+            ($this->defense * 250) +
+            ($this->magic * 200) +
+            ($this->luck * 0) +
+            ($this->speed * 100) +
+            ($this->concentration * 100);
+
+        return $this->setKi($ki);
     }
 
     public function getWin(): ?int
@@ -356,14 +467,14 @@ class GameUserCharacter
         return $this;
     }
 
-    public function getKill(): ?int
+    public function getFrag(): ?int
     {
-        return $this->kill;
+        return $this->frag;
     }
 
-    public function setKill(int $kill): self
+    public function setFrag(int $frag): self
     {
-        $this->kill = $kill;
+        $this->frag = $frag;
 
         return $this;
     }
@@ -400,6 +511,13 @@ class GameUserCharacter
     public function setPointsToDistribute(int $points_to_distribute): self
     {
         $this->points_to_distribute = $points_to_distribute;
+
+        return $this;
+    }
+
+    public function downPointsToDistribute(int $points_to_distribute)
+    {
+        $this->points_to_distribute -= $points_to_distribute;
 
         return $this;
     }

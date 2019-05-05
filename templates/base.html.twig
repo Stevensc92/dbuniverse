@@ -1,3 +1,7 @@
+{% if is_granted('ROLE_USER') %}
+    {% set CC = game.getCurrentCharacter() %}
+    {% set character = CC.getCharacter() %}
+{% endif %}
 <!DOCTYPE html>
 <html>
 {% include 'template/header.html.twig' %}

@@ -555,6 +555,38 @@ span.error, span.success
     margin-left: 2px;
 }
 
+#info-character #statistics .toggle-form-add-carac
+{
+    text-align: center;
+}
+
+#info-character #statistics .toggle-form-add-carac:hover
+{
+    cursor: pointer;
+}
+
+#form-add-carac
+{
+    width: 800px;
+}
+
+#form-add-carac .back:hover
+{
+    cursor: pointer;
+}
+
+#form-add-carac .carac-icons
+{
+    width: 16px;
+    height: 16px;
+    margin-bottom: 4px;
+}
+
+#form-add-carac .separator
+{
+    margin-top: 8px;
+}
+
 /**
     R E S P O N S I V E
  */
