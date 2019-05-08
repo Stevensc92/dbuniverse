@@ -4,9 +4,8 @@ security:
         App\Entity\User:
             algorithm: bcrypt
     providers:
-        our_db_provider:
-            entity:
-                class: App\Entity\User
+        user:
+            entity: { class: App\Entity\User, property: username }
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -16,7 +15,7 @@ security:
             pattern:    ^/
             http_basic: ~
             user_checker: App\Security\UserChecker
-            provider: our_db_provider
+            provider: user
             # https://symfony.com/doc/current/security/form_login_setup.html
             form_login:
                 login_path: login
@@ -36,3 +35,4 @@ security:
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/character, roles: ROLE_USER }
+        - { path: ^/map, roles: ROLE_USER }

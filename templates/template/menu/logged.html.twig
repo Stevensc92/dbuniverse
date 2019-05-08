@@ -4,21 +4,7 @@
 
     <a class="lien lien-perso" href="#"></a>
     <a class="lien-combat" href="#"></a>
-    <a class="lien-carte" href="#"></a>
+    <a class="lien-map" href="{{ path('game.map') }}"></a>
     <a class="lien-top" href="#"></a>
     <a class="logout" href="{{ path('logout') }}"></a>
-</div>
-
-
-<div id="list-character" style="display:none;">
-    <ul class="list-unstyled">
-        {% for character in game.getListCharacterForUser() %}
-            <li>
-                <a href="{{ path('change-cc', {'slug': character.character.slug}) }}">
-                    <img src="{{ asset('images/character/icon/'~character.character.icon) }}" />
-                    <span class="name">{{ character.character.name }}</span>
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
 </div>

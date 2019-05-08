@@ -71,6 +71,10 @@ class AppController extends Controller
                 'form' => $form->createView()
             ]);
         } else {
+            $this->addFlash('danger', 'Test error');
+            $this->addFlash('success', 'Test success');
+            $this->addFlash('success', 'Test success');
+            $this->addFlash('danger', 'Test error');
             return $this->render('index.html.twig', [
 
             ]);

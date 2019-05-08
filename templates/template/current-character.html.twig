@@ -6,16 +6,27 @@
     <div class="detail-character d-flex flex-column justify-content-center">
         <span class="name">{{ character.name }}</span>
         <span class="level">Niveau : <span>{{ CC.level }}</span></span>
-        <span class="cut"></span>
-        <span class="experience">Expérience : <span>{{ CC.experience }}</span></span>
         <span class="nextLevel">
             <span class="barre-experience">
-                <span class="progression" style="width: {{ game.getPercentExp()}}%">
+                <span class="progression" style="width: {{ game.getPercentExp() }}%">
                     <span title="{{ game.getPercentExp() }}%" class="percent"></span>
                 </span>
             </span>
         </span>
-        <span class="cut"></span>
         <span class="zenis">Zénis : <span>{{ game.getZenis() }}</span></span>
+    </div>
+
+    <div id="list-character" class="mt-5">
+        <div class="select-label">Changer de personnage</div>
+        <div class="select-select">
+            {% for character in game.getListCharacterForUser() %}
+                {% if (character.character.id) != (CC.character.id) %}
+                <div class="select-option" data-slug="{{ character.character.slug }}">
+                    <img class="float-left" alt="Icône {{ character.character.name }}" src="{{ asset('images/character/icon/'~character.character.icon) }}" />
+                    {{ character.character.name }}
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
 </div>

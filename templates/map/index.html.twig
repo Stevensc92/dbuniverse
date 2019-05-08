@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Carte{% endblock %}
+
+{% block body %}
+<div id="map">
+    {% for x in 'a'..'j' %}
+        {% for y in 1..10 %}
+            <a href="{{ path('game.map.change.position', {'x': x, 'y': y}) }}" id="case{{ x|upper~y }}" class="mapcell">&nbsp;</a>
+        {% endfor %}
+    {% endfor %}
+</div>
+{% endblock %}

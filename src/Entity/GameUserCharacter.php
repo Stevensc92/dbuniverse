@@ -40,7 +40,7 @@ class GameUserCharacter
     private $experience;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $x;
 
@@ -200,12 +200,12 @@ class GameUserCharacter
         return $this;
     }
 
-    public function getX(): ?int
+    public function getX(): ?string
     {
         return $this->x;
     }
 
-    public function setX(int $x): self
+    public function setX(string $x): self
     {
         $this->x = $x;
 
