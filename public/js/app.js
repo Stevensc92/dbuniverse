@@ -2,6 +2,7 @@ var app = {
     init: function() {
         console.log('app init');
         app.changeCharacter.init();
+        app.flashMessage.init();
     },
 
     changeCharacter: {
@@ -26,7 +27,13 @@ var app = {
 
             window.location = pathToRedirect;
         }
-    }
+    },
+
+    flashMessage: {
+        init: function() {
+            console.log('flash message initialisé');
+        },
+    },
 };
 
 $(app.init);

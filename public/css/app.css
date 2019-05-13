@@ -12,6 +12,19 @@ body
 }
 
 /**
+    F L A S H  -  M E S S A G E S
+ */
+
+#flash
+{
+    position: absolute;
+    top: 10%;
+    left: 33%;
+    width: 33%;
+    max-height: 50%;
+}
+
+/**
     N A V B A R
         T O P
  */
