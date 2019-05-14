@@ -27,5 +27,8 @@ services:
     App\Services\Character:
         arguments: ['@doctrine.orm.entity_manager', '@security.token_storage']
 
+    App\Services\NotificationService:
+        arguments: ['@doctrine.orm.entity_manager', '@security.token_storage', '@session']
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

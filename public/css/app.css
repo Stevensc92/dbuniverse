@@ -17,11 +17,17 @@ body
 
 #flash
 {
+    display: none;
     position: absolute;
     top: 10%;
     left: 33%;
     width: 33%;
     max-height: 50%;
+}
+
+#flash .alert .close
+{
+    cursor: pointer;
 }
 
 /**

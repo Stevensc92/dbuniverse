@@ -8,7 +8,7 @@ var app = {
     changeCharacter: {
         init: function() {
             $('.select-label').on('click', function() {
-                var container = $('#list-character'),
+                let container = $('#list-character'),
                     label     = $('.select-label'),
                     selector  = $('.select-select');
 
@@ -25,13 +25,20 @@ var app = {
         switch: function(slug) {
             let pathToRedirect = '/change-cc/'+slug;
 
-            window.location = pathToRedirect;
+            window.location.href = pathToRedirect;
         }
     },
 
     flashMessage: {
         init: function() {
-            console.log('flash message initialisé');
+            if($('#flash').length) {
+                const flash = $('#flash');
+                flash.fadeIn();
+
+                $('.alert .close').on('click', function() {
+                    $(this).parent().fadeOut();
+                });
+            }
         },
     },
 };

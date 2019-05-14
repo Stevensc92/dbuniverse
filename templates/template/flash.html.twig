@@ -3,6 +3,7 @@
     {% for label, messages in app.flashes %}
         {% for message in messages %}
             <div class="alert alert-{{label}}">
+                <span class="close">x</span>
                 {{message}}
             </div>
         {% endfor %}

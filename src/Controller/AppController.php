@@ -8,6 +8,7 @@ use App\Entity\GameUserCharacter;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Services\Character;
+use App\Services\NotificationService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -71,10 +72,14 @@ class AppController extends Controller
                 'form' => $form->createView()
             ]);
         } else {
-            $this->addFlash('danger', 'Test error');
-            $this->addFlash('success', 'Test success');
-            $this->addFlash('success', 'Test success');
-            $this->addFlash('danger', 'Test error');
+            $notification = new NotificationService(
+                $this->getDoctrine()->getManager(),
+                $this->get('security.token_storage'),
+                $this->get('session')
+            );
+
+//            $notification->sendNotification($this->getUser(), "Test notification");
+
             return $this->render('index.html.twig', [
 
             ]);
