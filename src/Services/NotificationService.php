@@ -35,6 +35,15 @@ class NotificationService
         $this->session->getFlashBag()->add('success', "Notification envoyé");
     }
 
+    public function getNotifications()
+    {
+        $user = $this->tokenStorage->getToken()->getUser();
+
+        $notifRepo = $this->em->getRepository('App:Notification');
+
+        return $notifRepo->findBy(['user' => $user]);
+    }
+
     /**
      * @return GameUserCharacter
      */

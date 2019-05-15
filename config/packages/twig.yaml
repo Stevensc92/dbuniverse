@@ -6,3 +6,4 @@ twig:
         - 'themes/register.form.html.twig'
     globals:
         game: '@App\Services\Character'
+        notification: '@App\Services\NotificationService'

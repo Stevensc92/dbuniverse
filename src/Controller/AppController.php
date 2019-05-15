@@ -21,7 +21,7 @@ class AppController extends Controller
     /**
      * @Route("/", name="index")
      */
-    public function index(Request $request,  UserPasswordEncoderInterface $passwordEncoder)
+    public function index(Request $request,  UserPasswordEncoderInterface $passwordEncoder, NotificationService $notificationService)
     {
         if ($this->isGranted('IS_AUTHENTICATED_ANONYMOUSLY') && !$this->isGranted('ROLE_USER')) {
             // création du formulaire
@@ -63,7 +63,7 @@ class AppController extends Controller
 
                 $em->flush();
 
-                $request->getSession()->getFlashBag()->add('success', "Votre compte est enregistré.");
+                $this->addFlash('success', "Votre compte est enregistré.");
 
                 return $this->redirectToRoute('login');
             }
@@ -72,13 +72,9 @@ class AppController extends Controller
                 'form' => $form->createView()
             ]);
         } else {
-            $notification = new NotificationService(
-                $this->getDoctrine()->getManager(),
-                $this->get('security.token_storage'),
-                $this->get('session')
-            );
+            dump($notificationService);
 
-//            $notification->sendNotification($this->getUser(), "Test notification");
+//            $notificationService->sendNotification($this->getUser(), "Test notification");
 
             return $this->render('index.html.twig', [
 
@@ -101,6 +97,7 @@ class AppController extends Controller
 
         $em->persist($gameUser);
         $em->flush();
+        $this->addFlash('success', 'Votre nouveau personnage est désormais '.$gameCharacter->getName());
         return $this->redirect($request->headers->get('referer'));
     }
 }
