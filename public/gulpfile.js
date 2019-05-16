@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
-const autoprefixer = require('gulp-autoprefixer');
 const minify = require('gulp-minify');
 const purgeSourcemaps = require('gulp-purge-sourcemaps');
 
