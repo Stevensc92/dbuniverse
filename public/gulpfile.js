@@ -9,9 +9,6 @@ const sassOptions = {
     errLogToConsole: true,
     outputStyle: 'compact'
 };
-const autoprefixerOptions = {
-    browsers: ['last 2 versions', '> 5%', 'Firefox ESR']
-};
 
 function swallowError (error) {
     console.log(error.toString());
@@ -25,7 +22,6 @@ gulp.task('sass', function () {
         .pipe(sass(sassOptions).on('error', sass.logError))
         .pipe(purgeSourcemaps())
         .pipe(sourcemaps.write())
-        //.pipe(autoprefixer(autoprefixerOptions))
         .pipe(gulp.dest('css'));
 });
 
