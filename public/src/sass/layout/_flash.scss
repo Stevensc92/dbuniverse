@@ -1,0 +1,16 @@
+/**
+    F L A S H  -  M E S S A G E S
+ */
+
+#flash {
+  display: none;
+  position: absolute;
+  top: 10%;
+  left: 33%;
+  width: 33%;
+  max-height: 50%;
+
+  .alert .close {
+    cursor: pointer;
+  }
+}

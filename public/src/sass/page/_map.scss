@@ -1,0 +1,55 @@
+/**
+    M A P
+ */
+#map {
+  background: url("#{$pathImage}/map.png");
+  background-size: cover;
+  margin: auto;
+  padding: 0;
+  height: 700px;
+  width: 700px;
+  position: relative;
+  border: 1px solid black;
+  overflow: hidden;
+  float: left;
+
+  #map img {
+    padding: 0;
+    margin: 0;
+    border: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5
+  }
+
+  #map div, #map a {
+    padding: 0;
+    margin: 0;
+    border: none;
+    display: block;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    text-decoration: none;
+    position: relative;
+    z-index: 20;
+  }
+
+  #map div.bord {
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+  }
+
+  #map div.mapcell {
+    background: url("#{$pathImage}/map/dessus_n.png") center center no-repeat;
+  }
+
+  #map a:hover {
+    background: url("#{$pathImage}/map/dessus1_n.png") center center no-repeat
+  }
+
+}

@@ -72,7 +72,7 @@ class AppController extends Controller
                 'form' => $form->createView()
             ]);
         } else {
-            dump($notificationService);
+//            dump($notificationService);
 
 //            $notificationService->sendNotification($this->getUser(), "Test notification");
 

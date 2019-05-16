@@ -1,1 +1,7 @@
-{{ dump(notification.getNotifications()) }}
+{#{{ dump(notification.getNotifications()) }}#}
+{% set notifications = notification.getNotifications() %}
+{% if notifications%}
+    <div id="notifications">
+
+    </div>
+{% endif %}
