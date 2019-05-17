@@ -1,12 +1,13 @@
-const gulp = require('gulp');
-const sass = require('gulp-sass');
-const sourcemaps = require('gulp-sourcemaps');
-const minify = require('gulp-minify');
-const purgeSourcemaps = require('gulp-purge-sourcemaps');
+const gulp = require('gulp'),
+      sass = require('gulp-sass'),
+      sourcemaps = require('gulp-sourcemaps'),
+      minify = require('gulp-minify'),
+      minifyJS = require('gulp-js-minify'),
+      purgeSourcemaps = require('gulp-purge-sourcemaps');
 
 const sassOptions = {
     errLogToConsole: true,
-    outputStyle: 'compact'
+    outputStyle: 'compressed'
 };
 
 function swallowError (error) {
@@ -28,14 +29,7 @@ gulp.task('sass', function () {
 gulp.task('minJs', function() {
     return gulp
         .src('./src/js/*.js')
-        .pipe(minify({
-            ext:{
-                min:'.min.js'
-            },
-            exclude: ['tasks'],
-            ignoreFiles: ['.combo.js', '-min.js'],
-            noSource: true,
-        }))
+        .pipe(minifyJS())
         .on('error', swallowError)
         .pipe(gulp.dest('js'))
 });
