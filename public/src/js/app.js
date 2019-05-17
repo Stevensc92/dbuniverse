@@ -1,6 +1,5 @@
 var app = {
     init: function() {
-        console.log('app init');
         app.changeCharacter.init();
         app.flashMessage.init();
     },

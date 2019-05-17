@@ -17,6 +17,10 @@
     margin-left: 5px;
   }
 
+  .nav-link {
+    width: 207px;
+    height: 62px;
+  }
 
   .nav-aventure {
     background: url("#{$pathImage}/nav/aventure.png");
@@ -34,98 +38,66 @@
 
   .nav-accueil {
     background: url("#{$pathImage}/nav/accueil.png");
-    width: 207px;
-    height: 62px;
     margin-top: 20px;
-  }
 
-  .nav-accueil:hover {
-    background: url("#{$pathImage}/nav/accueil_hover.png");
-    width: 207px;
-    height: 62px;
+    &:hover {
+      background: url("#{$pathImage}/nav/accueil_hover.png");
+    }
   }
 
   .nav-personnage {
     background: url("#{$pathImage}/nav/personnage.png");
-    width: 207px;
-    height: 62px;
-  }
 
-  .nav-personnage:hover {
-    background: url("#{$pathImage}/nav/personnage_hover.png");
-    width: 207px;
-    height: 62px;
+    &:hover {
+      background: url("#{$pathImage}/nav/personnage_hover.png");
+    }
   }
 
   .nav-capsule {
     background: url("#{$pathImage}/nav/capsule.png");
-    width: 207px;
-    height: 62px;
-  }
 
-  .nav-capsule:hover {
-    background: url("#{$pathImage}/nav/capsule_hover.png");
-    width: 207px;
-    height: 62px;
+    &:hover {
+      background: url("#{$pathImage}/nav/capsule_hover.png");
+    }
   }
 
   .nav-message {
     background: url("#{$pathImage}/nav/message.png");
-    width: 207px;
-    height: 62px;
-  }
 
-  .nav-message:hover {
-    background: url("#{$pathImage}/nav/message_hover.png");
-    width: 207px;
-    height: 62px;
+    &:hover {
+      background: url("#{$pathImage}/nav/message_hover.png");
+    }
   }
 
   .nav-message-new {
     background: url("#{$pathImage}/nav/message_new.png");
-    width: 207px;
-    height: 62px;
-  }
 
-  .nav-message-new:hover {
-    background: url("#{$pathImage}/nav/message_new_hover.png");
-    width: 207px;
-    height: 62px;
+    &:hover {
+      background: url("#{$pathImage}/nav/message_new_hover.png");
+    }
   }
 
   .nav-option {
     background: url("#{$pathImage}/nav/option.png");
-    width: 207px;
-    height: 62px;
-  }
 
-  .nav-option:hover {
-    background: url("#{$pathImage}/nav/option_hover.png");
-    width: 207px;
-    height: 62px;
+    &:hover {
+      background: url("#{$pathImage}/nav/option_hover.png");
+    }
   }
 
   .nav-forum {
     background: url("#{$pathImage}/nav/forum.png");
-    width: 207px;
-    height: 62px;
-  }
 
-  .nav-forum:hover {
-    background: url("#{$pathImage}/nav/forum_hover.png");
-    width: 207px;
-    height: 62px;
+    &:hover {
+      background: url("#{$pathImage}/nav/forum_hover.png");
+    }
   }
 
   .nav-team {
     background: url("#{$pathImage}/nav/team.png");
-    width: 207px;
-    height: 62px;
-  }
 
-  .nav-team:hover {
-    background: url("#{$pathImage}/nav/team_hover.png");
-    width: 207px;
-    height: 62px;
+    &:hover {
+      background: url("#{$pathImage}/nav/team_hover.png");
+    }
   }
 }

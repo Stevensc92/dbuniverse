@@ -182,4 +182,42 @@ class Character
 
         return $userCharacters;
     }
+
+    public function getPositionMap()
+    {
+        $user = $this->tokenStorage->getToken()->getUser();
+
+        $GUC = $this->em->getRepository('App:GameUserCharacter');
+
+        $currentChar = $this->getCurrentCharacter();
+
+        $position = $GUC->getPosition($user, $currentChar->getCharacter());
+
+        return $position;
+    }
+
+    public function getCharactersInXAndY($x, $y)
+    {
+        $user = $this->tokenStorage->getToken()->getUser();
+
+        $GUC = $this->em->getRepository('App:GameUserCharacter');
+
+        $characters = $GUC->getCharactersInXAndY($x, $y, $user);
+
+        return $characters;
+    }
+
+    public function getActionMap($x, $y)
+    {
+        $GMA = $this->em->getRepository('App:GameMapAction');
+
+        $actions = $GMA->findBy(['x' => $x, 'y' => $y]);
+
+        return $actions;
+    }
+
+    public function hasActionMapInPos($x, $y)
+    {
+        return ($this->getActionMap($x, $y)) ? true : false;
+    }
 }

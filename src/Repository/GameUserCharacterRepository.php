@@ -50,6 +50,37 @@ class GameUserCharacterRepository extends ServiceEntityRepository
         return $qb;
     }
 
+    public function getPosition(User $user, GameCharacter $character)
+    {
+        $qb = $this->createQueryBuilder('guc')
+            ->select('guc.x, guc.y')
+            ->where('guc.user = :user')
+            ->andWhere('guc.character = :character')
+            ->setParameter('user', $user)
+            ->setParameter('character', $character)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        return $qb;
+    }
+
+
+
+    public function getCharactersInXAndY($x, $y, User $user)
+    {
+        $qb = $this->createQueryBuilder('guc')
+            ->where('guc.x = :x')
+            ->andWhere('guc.y = :y')
+            ->andWhere('guc.user = :user')
+            ->setParameter('x', $x)
+            ->setParameter('y', $y)
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult();
+
+        return $qb;
+    }
+
     // /**
     //  * @return GameUserCharacter[] Returns an array of GameUserCharacter objects
     //  */

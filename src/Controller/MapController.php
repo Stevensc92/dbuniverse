@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Services\CapsuleCorp;
 use App\Services\Character;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,11 +20,37 @@ class MapController extends AbstractController
     /**
      * @Route("/map", name="game.map")
      */
-    public function index()
+    public function index(CapsuleCorp $capsuleCorp)
     {
+//        dump($this->get('game.character'));
 
         return $this->render('map/index.html.twig', [
         ]);
+    }
+
+    /**
+     * @Route("/map/{slug}", name="game.map.action")
+     */
+    public function displayActionMap(Request $request, Character $character)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $GMA = $em->getRepository('App:GameMapAction');
+
+        $actionRequest = $GMA->findOneBy(['slug' => $request->get('slug')]);
+
+        // current character
+        $CC = $character->getCurrentCharacter();
+
+        if ($actionRequest->getX() === $CC->getX() && $actionRequest->getY() === $CC->getY()) {
+            if ($actionRequest) {
+                return $this->render('map/actions/' . $request->get('slug') . '.html.twig');
+            }
+        } else {
+            $this->addFlash('danger', 'Vous devez être présent sur la cellule pour accèder à cette action.');
+        }
+
+        return $this->redirectToRoute('game.map');
     }
 
     /**

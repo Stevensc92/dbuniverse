@@ -3,11 +3,59 @@
 {% block title %}Carte{% endblock %}
 
 {% block body %}
+    {% set position = game.getPositionMap() %}
+    {% set posX = position.x %}
+    {% set posY = position.y %}
+
 <div id="map">
     {% for x in 'a'..'j' %}
         {% for y in 1..10 %}
-            <a href="{{ path('game.map.change.position', {'x': x, 'y': y}) }}" id="case{{ x|upper~y }}" class="mapcell">&nbsp;</a>
+            {% set charactersInPos = game.getCharactersInXAndY(x, y) %}
+
+            {% set arrayIcon = {} %}
+
+            {% for character in charactersInPos %}
+                {% set icon = character.character.icon %}
+                {% set name = character.character.name %}
+
+                {% set link = asset('src/images/character/icon/'~icon) %}
+
+                {% set tab = {'name': name, 'icon': link} %}
+
+                {% set arrayIcon = arrayIcon|merge([tab]) %}
+            {% endfor %}
+
+            {% if x == posX and posY == y %}
+                <div class="mapcell">
+                    {% if arrayIcon %}
+                        {% for chars in arrayIcon %}
+                            <img src="{{ chars.icon }}" alt="{{ chars.name }}"/>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            {% else %}
+                <a href="{{ path('game.map.change.position', {'x': x, 'y': y}) }}" id="case{{ x|upper~y }}" class="mapcell">
+                    {% if arrayIcon %}
+                        {% for chars in arrayIcon %}
+                            <img src="{{ chars.icon }}" alt="{{ chars.name }}"/>
+                        {% endfor %}
+                    {% endif %}
+                </a>
+            {% endif %}
+
+
         {% endfor %}
     {% endfor %}
+</div>
+
+<div id="actions" class="ml-3 d-flex justify-content-center flex-column">
+    <span class="title">Actions disponible sur la case {{ posX|upper }}-{{ posY }}</span>
+
+    {% if game.hasActionMapInPos(posX, posY) %}
+        {% set actions = game.getActionMap(posX, posY) %}
+        {% include 'map/_listActions.html.twig' with {'actions': actions} %}
+    {% endif %}
+
+    <a href="#">Fouiller</a>
 </div>
 {% endblock %}

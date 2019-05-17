@@ -6,24 +6,23 @@
   background-size: cover;
   margin: auto;
   padding: 0;
-  height: 700px;
-  width: 700px;
+  height: 702px;
+  width: 702px;
   position: relative;
   border: 1px solid black;
   overflow: hidden;
-  float: left;
 
-  #map img {
+  img {
     padding: 0;
     margin: 0;
     border: none;
-    position: absolute;
+    //position: absolute;
     top: 0;
     left: 0;
     z-index: 5
   }
 
-  #map div, #map a {
+  div, a {
     padding: 0;
     margin: 0;
     border: none;
@@ -39,17 +38,33 @@
     z-index: 20;
   }
 
-  #map div.bord {
+  div.bord {
     border-bottom: 1px solid;
     border-right: 1px solid;
   }
 
-  #map div.mapcell {
-    background: url("#{$pathImage}/map/dessus_n.png") center center no-repeat;
+  div.mapcell {
+    border: 2px solid red;
   }
 
-  #map a:hover {
-    background: url("#{$pathImage}/map/dessus1_n.png") center center no-repeat
+  a.mapcell:hover {
+    border: 2px solid yellow;
   }
 
+  div.mapcell img,
+  a.mapcell img {
+    margin-right: 5px;
+  }
+}
+
+#actions {
+  width: 200px;
+  height: 100px;
+  text-align: center;
+
+  .title {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+  }
 }

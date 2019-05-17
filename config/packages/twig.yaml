@@ -7,3 +7,4 @@ twig:
     globals:
         game: '@App\Services\Character'
         notification: '@App\Services\NotificationService'
+        capsuleCorp: '@App\Services\CapsuleCorp'

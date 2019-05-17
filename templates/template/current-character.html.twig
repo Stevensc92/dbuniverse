@@ -22,7 +22,7 @@
             {% for character in game.getListCharacterForUser() %}
                 {% if (character.character.id) != (CC.character.id) %}
                 <div class="select-option" data-slug="{{ character.character.slug }}">
-                    <img class="float-left" alt="Icône {{ character.character.name }}" src="{{ asset('images/character/icon/'~character.character.icon) }}" />
+                    <img class="float-left" alt="Icône {{ character.character.name }}" src="{{ asset('src/images/character/icon/'~character.character.icon) }}" />
                     {{ character.character.name }}
                 </div>
                 {% endif %}
