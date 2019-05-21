@@ -15,6 +15,5 @@ class CapsuleCorp
         $this->em           = $em;
         $this->tokenStorage = $tokenStorage;
 
-        dump($this->em);
     }
 }
