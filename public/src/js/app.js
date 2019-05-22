@@ -1,8 +1,11 @@
+import ccgtm from 'ccgtm';
+
 var app = {
     init: function() {
         console.log('app init');
         app.changeCharacter.init();
         app.flashMessage.init();
+        app.ccgtm.init();
     },
 
     changeCharacter: {
@@ -41,6 +44,29 @@ var app = {
             }
         },
     },
+
+    ccgtm: {
+        init: function() {
+            ccgtm.initialize({
+                settings: {
+                    validateOnClose: false,
+                    pushTop: true,
+                    pushPop: false,
+                    fixBottom: false,
+                    disableAcceptAll: false,
+                    pushTopHideOnScroll: false,
+                    mobileOffCanvas: false,
+                    moreLink: '',
+                    domain: null,
+                    timeout: 0,
+                    daysBeforeExpiry: 396
+                },
+                i18n: {
+                    popinClose: 'Close'
+                }
+            });
+        }
+    }
 };
 
 $(app.init);
