@@ -16,7 +16,7 @@ services:
     # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/*'
-        exclude: '../src/{Entity,Migrations,Tests,Kernel.php}'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
@@ -24,9 +24,12 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    game.character:
+        class: App\Services\Character
+        autowire: true
 
     App\Services\Character:
-        arguments: ['@doctrine.orm.entity_manager', '@security.token_storage']
+        autowire: true
 
     App\Services\NotificationService:
         arguments: ['@doctrine.orm.entity_manager', '@security.token_storage', '@session']

@@ -44,7 +44,6 @@ class CharacterCommand extends Command
             foreach ($character as $slug => $details) {
                 $item = new GameCharacter();
                 $item->setName($details['name'])
-                     ->setSlug($slug)
                      ->setIcon($slug.'.gif')
                      ->setAlternative($details['alt']);
 

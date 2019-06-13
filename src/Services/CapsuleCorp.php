@@ -2,15 +2,15 @@
 
 namespace App\Services;
 
-use Doctrine\ORM\EntityManager;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class CapsuleCorp
 {
     private $tokenStorage,
             $em;
 
-    public function __construct(EntityManager $em, TokenStorage $tokenStorage)
+    public function __construct(EntityManagerInterface $em, TokenStorageInterface $tokenStorage)
     {
         $this->em           = $em;
         $this->tokenStorage = $tokenStorage;

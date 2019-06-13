@@ -8,3 +8,6 @@ characters:
   tortue_geniale:
     name: "Tortue Géniale"
     alt: false
+  yamcha:
+    name: "Yamcha"
+    alt: false

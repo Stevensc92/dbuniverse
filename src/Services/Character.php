@@ -6,9 +6,9 @@ use App\Entity\GameCharacterAvatar;
 use App\Entity\GameUser;
 use App\Entity\GameUserCharacter;
 use App\Repository\GameLevelRepository;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\GameCharacter;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class Character
 {
@@ -16,7 +16,7 @@ class Character
 
     private $tokenStorage;
 
-    public function __construct(EntityManager $em, TokenStorage $tokenStorage)
+    public function __construct(EntityManagerInterface $em, TokenStorageInterface $tokenStorage)
     {
         $this->em           = $em;
         $this->tokenStorage = $tokenStorage;

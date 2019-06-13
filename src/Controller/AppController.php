@@ -72,10 +72,6 @@ class AppController extends Controller
                 'form' => $form->createView()
             ]);
         } else {
-//            dump($notificationService);
-
-//            $notificationService->sendNotification($this->getUser(), "Test notification");
-
             return $this->render('index.html.twig', [
 
             ]);

@@ -13,14 +13,13 @@ class CharacterController extends AbstractController
     /**
      * @Route("/character", name="game.character")
      */
-    public function index()
+    public function index(Character $serviceCharacter)
     {
         $user = $this->getUser();
 
         $tk = $this->container->get('security.token_storage');
         $em = $this->getDoctrine()->getManager();
 
-        $serviceCharacter = new Character($em, $tk);
         $CC = $serviceCharacter->getCurrentCharacter();
 
         if ($CC->getPointsToDistribute() > 0) {

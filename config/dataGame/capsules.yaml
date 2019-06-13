@@ -1,0 +1,227 @@
+capsules:
+  choshinsui:
+    type: 1
+    name: "Chôshinsui"
+    power: 10
+    defense: 10
+    magic: 10
+    luck: 10
+    speed: 10
+    concentration: 10
+    life: 500
+    energy: 250
+    price: 3000000
+  armure_sayen:
+    type: 1
+    name: "Armure Sayen"
+    power: 2
+    defense: 2
+    magic: 2
+    speed: -2
+    life: 100
+    energy: 50
+    price: 2500
+  concentration_namek:
+    type: 1
+    name: "Concentration Namek"
+    defense: -2
+    magic: 2
+    concentration: 5
+    life: 100
+    energy: 150
+    price: 2500
+  vitesse_accrue:
+    type: 1
+    name: "Vitesse accrue"
+    power: -2
+    speed: 5
+    concentration: 2
+    life: 250
+    price: 2500
+  bashosen:
+    type: 1
+    name: "Bashôsen"
+    power: -2
+    magic: 2
+    luck: 2
+    concentration: 2
+    energy: 250
+    price: 2500
+  nyo_ibo:
+    type: 1
+    name: "Nyo-ibô"
+    power: 7
+    defense: 2
+    magic: -2
+    luck: 5
+    concentration: -2
+    life: 250
+    energy: 250
+    price: 5000
+  kinto_un:
+    type: 1
+    name: "Kinto-un"
+    power: -2
+    defense: 2
+    luck: 5
+    speed: 7
+    life: 500
+    energy: -250
+    price: 5000
+  manipulation_chance:
+    type: 1
+    name: "Manipulation de chance"
+    magic: 5
+    luck: 7
+    speed: -2
+    concentration: 2
+    life: -250
+    energy: 500
+    price: 5000
+  haine_sayen:
+    type: 1
+    name: "Haine Sayen"
+    power: 7
+    defense: 2
+    magic: -2
+    luck: -2
+    speed: 2
+    concentration: 2
+    life: 250
+    energy: 250
+    price: 5000
+  brume_demoniaque:
+    type: 1
+    name: "Brume démoniaque"
+    power: -2
+    defense: 5
+    magic: 5
+    luck: 2
+    speed: 2
+    concentration: 7
+    life: -500
+    energy: 500
+    price: 10000
+  carapace_tortues:
+    type: 1
+    name: "Carapce des Tortues"
+    power: 5
+    defense: 7
+    speed: 2
+    concentration: -2
+    life: 300
+    energy: -250
+    price: 10000
+  fruit_enfer:
+    type: 1
+    name: "Fruit de l'Enfer"
+    power: 7
+    defense: 7
+    magic: -5
+    luck: 2
+    speed: 2
+    concentration: -2
+    life: 250
+    energy: 500
+    price: 10000
+  sabre_ensorcele:
+    type: 1
+    name: "Sabre ensorcelé"
+    power: -5
+    defense: -2
+    magic: 5
+    luck: 7
+    speed: 2
+    concentration: 2
+    life: 250
+    energy: 125
+    price: 10000
+  magie_babidi:
+    type: 1
+    name: "Magie de babidi"
+    power: -2
+    defense: -5
+    magic: 7
+    luck: 2
+    speed: 2
+    concentration: 7
+    life: -250
+    energy: 300
+    price: 20000
+  chibi_goku:
+    type: 2
+    name: "Chibi Gokû"
+    power: +10
+    defense: +10
+    magic: +10
+    luck: +10
+    speed: +10
+    concentration: +10
+    life: +500
+    energy: +500
+    price: 0
+  kamehameha:
+    0:
+      type: 3
+      character: chibi_goku
+      name: "KameHameHa"
+      damage: 1.5
+      energy: 250
+      price: 1000
+    1:
+      type: 3
+      character: tortue_geniale
+      name: "KameHameHa"
+      damage: 1.5
+      energy: 250
+      price: 1000
+  nyoi_bo:
+    type: 3
+    character: chibi_goku
+    name: "Nyoi Bô"
+    damage: 2.0
+    energy: 500
+    price: 3000
+  poing_dragon:
+    type: 3
+    character: chibi_goku
+    name: "Poing du Dragon"
+    damage: 3.0
+    energy: 1000
+    price: 10000
+  namamidabutsu:
+    type: 3
+    character: tortue_geniale
+    name: "Namamidabutsu"
+    damage: 2.0
+    energy: 500
+    price: 3000
+  super_kamehameha:
+    type: 3
+    character: tortue_geniale
+    name: "Super KameHameHa"
+    damage: 3.0
+    energy: 1000
+    price: 10000
+  mitraillette:
+    type: 3
+    character: bulma
+    name: "Mitraillette"
+    damage: 1.5
+    energy: 250
+    price: 1000
+  son_goku_rescousse:
+    type: 3
+    character: bulma
+    name: "Son Gokû à la rescousse"
+    damage: 2.0
+    energy: 500
+    price: 3000
+  charme:
+    type: 3
+    character: bulma
+    name: "Charme"
+    damage: 3.0
+    energy: 1000
+    price: 10000
+
