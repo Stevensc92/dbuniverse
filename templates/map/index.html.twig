@@ -3,6 +3,7 @@
 {% block title %}Carte{% endblock %}
 
 {% block body %}
+    {% spaceless %}
     {% set position = game.getPositionMap() %}
     {% set posX = position.x %}
     {% set posY = position.y %}
@@ -58,4 +59,5 @@
 
     <a href="#">Fouiller</a>
 </div>
+    {% endspaceless %}
 {% endblock %}

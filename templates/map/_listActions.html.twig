@@ -1,3 +1,5 @@
 {% for action in actions %}
-    <a href="{{ path('game.map.action', {'slug': action.slug}) }}">{{ action.name }}</a>
+    <div class="select-option">
+        <a href="{{ path('game.map.action', {'slug': action.slug}) }}">{{ action.name }}</a>
+    </div>
 {% endfor %}

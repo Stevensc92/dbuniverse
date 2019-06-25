@@ -25,7 +25,7 @@ class CharacterCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('app:game:generate:character')
+            ->setName('game:generate:character')
             ->setDescription('Generate game character.')
             ;
     }
@@ -42,12 +42,18 @@ class CharacterCommand extends Command
 
         foreach ($characters as $character) {
             foreach ($character as $slug => $details) {
+                if (($this->em->getRepository('App:GameCharacter')->findOneBy(['name' => $details['name']]))) {
+                    $output->writeln(['Le personnage '.$details['name'].' existe déjà.']);
+                    continue;
+                }
+
                 $item = new GameCharacter();
                 $item->setName($details['name'])
                      ->setIcon($slug.'.gif')
                      ->setAlternative($details['alt']);
 
                 $this->em->persist($item);
+                $output->writeln(["Le personnage {$details['name']} a été ajouté."]);
             }
         }
 

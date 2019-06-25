@@ -23,7 +23,7 @@ class LevelCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('app:game:generate:level')
+            ->setName('game:generate:level')
             ->setDescription('Generate game level.')
             ->setDefinition(array(
                 new InputArgument('level_max', InputArgument::REQUIRED, 'The level max to generate'),
@@ -65,8 +65,10 @@ class LevelCommand extends Command
     }
 
     /**
-     *      * {@inheritdoc}
-     *           */
+     *
+     * {@inheritdoc}
+     *
+     */
     protected function interact(InputInterface $input, OutputInterface $output)
     {
         $questions = array();

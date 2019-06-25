@@ -25,7 +25,7 @@ class CharacterAvatarCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('app:game:generate:character-Avatar')
+            ->setName('game:generate:character-Avatar')
             ->setDescription('Generate game avatar for character.')
             ;
     }
@@ -47,11 +47,16 @@ class CharacterAvatarCommand extends Command
             $currChar = $gameCharacterRepository->findOneBy(['slug' => $character]);
 
             foreach ($details as $level => $name) {
+
                 if(preg_match('/([0-9]{1,})-([0-9]{1,})/', $level,$result)) {
                     $min = $result[1];
                     $max = $result[2];
 
                     for ($i = $min; $i <= $max; $i++) {
+                        if ($this->em->getRepository('App:GameCharacterAvatar')->findOneBy(['characterId' => $currChar->getId(), 'level' => $i])) {
+                            $output->writeln(["L'avatar du niveau {$i} pour {$currChar->getName()} existe déjà."]);
+                            continue 1;
+                        }
                         $gameCharacterAvatar = new GameCharacterAvatar();
                         $gameCharacterAvatar->setLevel($i)
                                             ->setImage($name.".jpg")

@@ -6,6 +6,7 @@
     {% if CC.pointsToDistribute > 0 and form is defined %}
         {% form_theme form 'themes/add_carac.form.html.twig' %}
     {% endif %}
+    {% set expToUp = game.getExpToUp() %}
     <div id="info-character" class="d-flex">
         <div id="content-left">
             <div id="info-char" class="d-flex justify-content-between">
@@ -31,7 +32,7 @@
 
             <div id="experience" class="ml-4 mt-5">
                 <div class="experience-number">
-                    <span class="number">{{ CC.experience }}</span> <span class="title">point d'expériences</span>
+                    <span class="number">{{ CC.experience }}</span> <span class="title"> point{% if CC.experience > 1 %}s{% endif %} d'expérience{% if CC.experience > 1 %}s{% endif %}</span>
                 </div>
 
                 <div class="character-bar-experience" title="{{ game.getPercentExp() }}%">
@@ -39,7 +40,7 @@
                 </div>
 
                 <div class="exp-to-up">
-                    Il vous manque <span class="font-weight-bold">{{ game.getExpToUp() }}</span> points d'expériences avant de passer au niveau suivant.
+                    Il vous manque <span class="font-weight-bold">{{ expToUp }}</span> point{% if expToUp > 1 %}s{% endif %} d'expérience{% if expToUp > 1 %}s{% endif %} avant de passer au niveau suivant.
                 </div>
             </div>
         </div>

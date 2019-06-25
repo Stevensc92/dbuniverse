@@ -1,3 +1,4 @@
+{% spaceless %}
 {% if is_granted('ROLE_USER') %}
     {% set CC = game.getCurrentCharacter() %}
     {% set character = CC.getCharacter() %}
@@ -42,4 +43,5 @@
         {% endblock %}
     </body>
 </html>
+{% endspaceless %}
 

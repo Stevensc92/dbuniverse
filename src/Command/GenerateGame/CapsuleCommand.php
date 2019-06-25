@@ -26,7 +26,7 @@ class CapsuleCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('app:game:generate:capsule')
+            ->setName('game:generate:capsule')
             ->setDescription('Generate game capsule.')
             ;
     }
@@ -48,8 +48,7 @@ class CapsuleCommand extends Command
             foreach ($capsuleType as $type) {
                 foreach ($type as $slug => $details) {
                     $item = new GameCapsuleType();
-                    $item->setSlug($slug)
-                         ->setName($details['name']);
+                    $item->setName($details['name']);
 
                     $this->em->persist($item);
                 }
@@ -60,7 +59,7 @@ class CapsuleCommand extends Command
 
         $capsules       = Yaml::parseFile('config/dataGame/capsules.yaml');
 
-        $nbCapsuleAdd = 0;
+        $nbCapsuleAdd   = 0;
 
 
         foreach ($capsules as $capsule) {
@@ -102,7 +101,6 @@ class CapsuleCommand extends Command
     private function getCapsuleCompleted($slug, $details)
     {
         $item = new GameCapsule();
-        $item->setSlug($slug);
 
         foreach ($details as $property => $value) {
             if ($property === "type") {

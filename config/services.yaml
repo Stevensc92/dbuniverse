@@ -28,6 +28,10 @@ services:
         class: App\Services\Character
         autowire: true
 
+    game.capscorp:
+        class: App\Services\CapsuleCorp
+        autowire: true
+
     App\Services\Character:
         autowire: true
 

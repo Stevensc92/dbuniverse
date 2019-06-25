@@ -20,10 +20,8 @@ class MapController extends AbstractController
     /**
      * @Route("/map", name="game.map")
      */
-    public function index(CapsuleCorp $capsuleCorp)
+    public function index()
     {
-//        dump($this->get('game.character'));
-
         return $this->render('map/index.html.twig', [
         ]);
     }
@@ -42,8 +40,8 @@ class MapController extends AbstractController
         // current character
         $CC = $character->getCurrentCharacter();
 
-        if ($actionRequest->getX() === $CC->getX() && $actionRequest->getY() === $CC->getY()) {
-            if ($actionRequest) {
+        if ($actionRequest) {
+            if ($actionRequest->getX() === $CC->getX() && $actionRequest->getY() === $CC->getY()) {
                 return $this->render('map/actions/' . $request->get('slug') . '.html.twig');
             }
         } else {

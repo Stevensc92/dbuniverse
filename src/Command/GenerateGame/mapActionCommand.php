@@ -22,7 +22,7 @@ class mapActionCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('app:game:generate:map-action')
+            ->setName('game:generate:map-action')
             ->setDescription('Generate game map action.')
             ;
     }
@@ -39,13 +39,17 @@ class mapActionCommand extends Command
 
         foreach ($map as $action) {
             foreach ($action as $slug => $details) {
+                if ($this->em->getRepository('App:GameMapAction')->findOneBy(['name' => $details['name']])) {
+                    $output->writeln(["L'action {$details['name']} existe déjà."]);
+                    continue 1;
+                }
                 $mapAction = new GameMapAction();
-                $mapAction->setSlug($slug)
-                          ->setName($details['name'])
+                $mapAction->setName($details['name'])
                           ->setX($details['x'])
                           ->setY($details['y']);
 
                 $this->em->persist($mapAction);
+                $output->writeln(["L'action {$details['name']} a été créée."]);
             }
         }
 

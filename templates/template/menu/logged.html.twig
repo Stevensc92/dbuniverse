@@ -1,10 +1,21 @@
-            {#{{ dump(game.getListCharacterForUser()) }}#}
+{% set position = game.getPositionMap() %}
+{% set posX = position.x %}
+{% set posY = position.y %}
 <div class="navbar navbar-expand-lg justify-content-between" id="menu">
     <a class="" href="{{ path('index') }}" id="logo"></a>
 
     <a class="lien lien-perso" href="#"></a>
     <a class="lien-combat" href="#"></a>
     <a class="lien-map" href="{{ path('game.map') }}"></a>
+    {% if not (app.request.attributes.get('_route') ends with 'map') %}
+        {% if game.hasActionMapInPos(posX, posY) %}
+            {% set actions = game.getActionMap(posX, posY) %}
+            <div id="lien-map-actions">
+                <span class="sub-title">Action disponible sur la case</span>
+                {% include 'map/_listActions.html.twig' with {'actions': actions} %}
+            </div>
+        {% endif %}
+    {% endif %}
     <a class="lien-top" href="#"></a>
     <a class="logout" href="{{ path('logout') }}"></a>
 </div>

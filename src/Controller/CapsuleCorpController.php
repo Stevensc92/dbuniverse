@@ -12,6 +12,6 @@ class CapsuleCorpController extends AbstractController
      */
     public function index()
     {
-
+        return $this->render('capsule-corp/store.html.twig');
     }
 }
