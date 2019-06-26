@@ -1,1 +1,5 @@
-{{ dump(capsuleCorp.generateShop()) }}
+{% for capsule in shop %}
+    {% set caps = capsule.capsule %}
+    {% set stock = capsule.stock %}
+
+{% endfor %}

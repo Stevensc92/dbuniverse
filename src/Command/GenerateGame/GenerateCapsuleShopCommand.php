@@ -42,6 +42,8 @@ class GenerateCapsuleShopCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        dump($this->capsuleCorp->generateShop());
+        if ($this->capsuleCorp->generateShop() ) {
+            $output->writeln(['La capsule corp a bien été réinitialisé.']);
+        }
     }
 }

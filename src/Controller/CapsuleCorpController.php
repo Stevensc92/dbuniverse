@@ -12,6 +12,9 @@ class CapsuleCorpController extends AbstractController
      */
     public function index()
     {
-        return $this->render('capsule-corp/store.html.twig');
+        $capsuleCorp = $this->getDoctrine()->getRepository('App:GameCapsuleCorp')->findAll();
+        return $this->render('capsule-corp/store.html.twig', [
+            'shop' => $capsuleCorp
+        ]);
     }
 }
