@@ -1,0 +1,108 @@
+/**
+    N A V B A R
+    T O P
+ **/
+
+#menu {
+  background: url("#{$pathImage}/top/background_top.png");
+  height: 51px;
+
+  #logo {
+    background: url("#{$pathImage}/logo_petit.png");
+    width: 144px;
+    height: 56px !important;
+    z-index: 999;
+  }
+
+  .lien-perso {
+    background: url("#{$pathImage}/top/personnage.png");
+    width: 150px;
+    height: 35px;
+  }
+
+  .lien-combat {
+    background: url("#{$pathImage}/top/combat.png");
+    width: 117px;
+    height: 35px;
+  }
+
+  .lien-map {
+    background: url("#{$pathImage}/top/map.png");
+    width: 80px;
+    height: 35px;
+
+
+  }
+
+  #lien-map-actions {
+    display: none;
+    &.opened {
+      display: block;
+      padding: 5px;
+      position: absolute;
+      top: 50px;
+      z-index: 9999;
+      border-color: green;
+      border-style: solid;
+      border-top-width: 0;
+      border-right-width: 3px;
+      border-bottom-width: 3px;
+      border-left-width: 3px;
+    }
+
+    > .sub-title {
+      display: block;
+    }
+  }
+
+  .lien-top {
+    background: url("#{$pathImage}/top/top.png");
+    width: 59px;
+    height: 34px;
+  }
+
+  .logout {
+    background: url("#{$pathImage}/top/deconnexion.png");
+    width: 45px;
+    height: 45px;
+  }
+
+  .info-player-online {
+    color: #fff;
+  }
+
+  .info-player-online span {
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  /**
+    C U S T O M
+        button
+        input
+ */
+
+  button
+  {
+    color: #fff!important;
+    background: linear-gradient(#64819f, #94afcb);
+    border: 1px solid white!important;
+    border-radius: 8px!important;
+    box-shadow: 1px 1px 8px #64819f!important;
+    margin-top: 20px;
+  }
+
+  button::placeholder, #menu input::placeholder
+  {
+    color: #fff;
+  }
+
+  input, #menu select, #menu .button
+  {
+    color: #fff!important;
+    background: linear-gradient(#64819f, #94afcb);
+    border: 1px solid white;
+    border-radius: 8px!important;
+    box-shadow: 1px 1px 8px #64819f;
+  }
+}

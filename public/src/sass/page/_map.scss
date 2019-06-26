@@ -1,0 +1,78 @@
+/**
+    M A P
+ */
+#map {
+  background: url("#{$pathImage}/map.png");
+  background-size: cover;
+  margin: auto;
+  padding: 0;
+  height: 702px;
+  width: 702px;
+  position: relative;
+  border: 1px solid black;
+  overflow: hidden;
+
+  img {
+    padding: 0;
+    margin: 0;
+    border: none;
+    //position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5
+  }
+
+  div, a {
+    padding: 0;
+    margin: 0;
+    border: none;
+    display: block;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    text-decoration: none;
+    position: relative;
+    z-index: 20;
+  }
+
+  div.bord {
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+  }
+
+  div.mapcell {
+    border: 2px solid red;
+  }
+
+  a.mapcell:hover {
+    border: 2px solid yellow;
+  }
+
+  div.mapcell img,
+  a.mapcell img {
+    margin-right: 5px;
+  }
+}
+
+#actions {
+  width: 200px;
+  height: 100px;
+  text-align: center;
+  border: {
+    width: 2px;
+    style: solid;
+    color: $orangeBold;
+    radius: 10px;
+  }
+  box-shadow: 5px 7px 3px 4px $orangeLight;
+
+
+  .title {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}

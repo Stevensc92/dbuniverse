@@ -1,0 +1,154 @@
+/**
+    P A G E  -  C H A R A C T E R
+ */
+
+
+#info-character {
+  background: url("#{$pathImage}//info_perso/background.png");
+  width: 840px;
+  height: 510px;
+  
+  #info-char {
+    width: 583px;
+    height: 337px;
+    margin-left: 18px;
+
+    ul#list-stat {
+      width: 338px;
+      height: 150px;
+      line-height: 1.18;
+      margin-left: 25px;
+    }
+
+    .avatar {
+      margin-top: 50px;
+      margin-right: 24px;
+    }
+  }
+
+  #experience {
+    width: 583px;
+    height: 156px;
+
+    .experience-number {
+      display: block;
+      text-align: center;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .number {
+      font-weight: bold;
+    }
+
+    .title {
+      font-style: italic;
+    }
+
+    .character-bar-experience,
+    .progression {
+      display: block;
+      height: 30px;
+      width: 500px;
+
+      -moz-border-radius: 15px;
+      -webkit-border-radius: 15px;
+      -o-border-radius: 15px;
+      border-radius: 15px;
+      margin-left: 50px;
+    }
+
+    .character-bar-experience {
+      margin: 0 auto 10px auto;
+      background-color: white;
+
+      -moz-box-shadow: 1px 1px 4px #999;
+      -webkit-box-shadow: 1px 1px 4px #999;
+      -o-box-shadow: 1px 1px 4px #999;
+      box-shadow: 1px 1px 4px #999;
+    }
+
+    .progression {
+      background-color: rgb(253, 205, 73);
+      margin: 0 0 5px;
+      -moz-box-shadow: 1px 1px 4px #999;
+      -webkit-box-shadow: 1px 1px 4px #999;
+      -o-box-shadow: 1px 1px 4px #999;
+      box-shadow: 1px 1px 4px #999;
+    }
+
+    .exp-to-up {
+      font-size: 16px;
+    }
+  }
+
+  .characteristic li span {
+    display: inline-block;
+
+    &.title {
+      font-style: italic;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    &.number {
+      font-weight: bold;
+      float: right;
+    }
+  }
+
+
+  #statistics {
+    width: 229px;
+    height: 504px;
+    padding-top: 2rem !important;
+
+    .name-character {
+      font-size: 24px;
+      font-weight: bold;
+      font-style: italic;
+      text-shadow: 1px 3px 10px white;
+      text-align: center;
+      font-family: "Comic Sans MS", sans-serif;
+    }
+
+    .sub-title {
+      font-size: 20px;
+      display: block;
+      text-decoration: underline;
+      text-align: center;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-fight ul,
+    .power-fight ul {
+      margin-left: 2px;
+    }
+
+    .toggle-form-add-carac {
+      text-align: center;
+    }
+
+    .toggle-form-add-carac:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+#form-add-carac {
+  width: 800px;
+
+  .back:hover {
+    cursor: pointer;
+  }
+
+  .carac-icons {
+    width: 16px;
+    height: 16px;
+    margin-bottom: 4px;
+  }
+
+  .separator {
+  }
+}

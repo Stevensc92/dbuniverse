@@ -1,0 +1,103 @@
+/**
+    N A V B A R
+        L E F T
+ */
+
+#navbar-left {
+  margin-top: 5px;
+  background: url("#{$pathImage}/nav/background_2.png") no-repeat;
+  width: auto;
+  height: 652px;
+  position: relative;
+  top: -7px;
+  left: -1px;
+
+  a {
+    margin-bottom: 14px;
+    margin-left: 5px;
+  }
+
+  .nav-link {
+    width: 207px;
+    height: 62px;
+  }
+
+  .nav-aventure {
+    background: url("#{$pathImage}/nav/aventure.png");
+    width: 198px;
+    height: 46px;
+    position: relative;
+    top: 5px;
+    margin-bottom: 15px;
+  }
+
+  .lien-nav {
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+
+  .nav-accueil {
+    background: url("#{$pathImage}/nav/accueil.png");
+    margin-top: 20px;
+
+    &:hover, &.active {
+      background: url("#{$pathImage}/nav/accueil_hover.png");
+    }
+  }
+
+  .nav-personnage {
+    background: url("#{$pathImage}/nav/personnage.png");
+
+    &:hover, &.active {
+      background: url("#{$pathImage}/nav/personnage_hover.png");
+    }
+  }
+
+  .nav-capsule {
+    background: url("#{$pathImage}/nav/capsule.png");
+
+    &:hover, &.active {
+      background: url("#{$pathImage}/nav/capsule_hover.png");
+    }
+  }
+
+  .nav-message {
+    background: url("#{$pathImage}/nav/message.png");
+
+    &:hover, &.active {
+      background: url("#{$pathImage}/nav/message_hover.png");
+    }
+  }
+
+  .nav-message-new {
+    background: url("#{$pathImage}/nav/message_new.png");
+
+    &:hover, &.active {
+      background: url("#{$pathImage}/nav/message_new_hover.png");
+    }
+  }
+
+  .nav-option {
+    background: url("#{$pathImage}/nav/option.png");
+
+    &:hover, &.active {
+      background: url("#{$pathImage}/nav/option_hover.png");
+    }
+  }
+
+  .nav-forum {
+    background: url("#{$pathImage}/nav/forum.png");
+
+    &:hover, &.active {
+      background: url("#{$pathImage}/nav/forum_hover.png");
+    }
+  }
+
+  .nav-team {
+    background: url("#{$pathImage}/nav/team.png");
+
+    &:hover, &.active {
+      background: url("#{$pathImage}/nav/team_hover.png");
+    }
+  }
+}

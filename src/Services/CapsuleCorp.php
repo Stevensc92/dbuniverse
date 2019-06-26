@@ -18,6 +18,12 @@ class CapsuleCorp
         3 => 20,
     ];
 
+    private $maxCapsByType = [
+        1 => 8,
+        2 => 1,
+        3 => 3
+    ];
+
     public function __construct(EntityManagerInterface $em, TokenStorageInterface $tokenStorage)
     {
         $this->em           = $em;
@@ -28,8 +34,8 @@ class CapsuleCorp
     public function generateShop()
     {
         $shop = [];
-        $shop = array_merge($shop, $this->getCapsules(1, 10));
-        $shop = array_merge($shop, $this->getCapsules(3, 3));
+        $shop = array_merge($shop, $this->getCapsules(3, $this->maxCapsByType[3]));
+        $shop = array_merge($shop, $this->getCapsules(1, $this->maxCapsByType[1]));
 
         return $this->createShop($shop);
     }

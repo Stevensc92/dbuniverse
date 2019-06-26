@@ -1,0 +1,35 @@
+/** CAPSULE CORP **/
+#capsule-corp {
+  background: url('#{$pathImage}/capsulecorp/background.png');
+  width: 800px;
+  height: 805px;
+
+  .introduction {
+    width: 320px;
+    position: relative;
+    left: 100px;
+    top: 80px;
+    text-align: justify;
+    color: black;
+  }
+
+  #list {
+    width: 500px;
+    position: relative;
+    top: 165px;
+    left: 50px;
+
+    > #capsules-jaune {
+      margin-top: 110px;
+    }
+    .capsule {
+      .slug {
+        font-size: 18px;
+      }
+
+      .stat {
+        display: none;
+      }
+    }
+  }
+}

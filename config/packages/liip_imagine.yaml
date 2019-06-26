@@ -8,3 +8,7 @@ liip_imagine:
             quality: 100
             filters:
                 thumbnail: { size: [178, 268], mode: outbound }
+        capsule:
+            quality: 100
+            filters:
+                thumbnail: { size: [], mode: outbound}

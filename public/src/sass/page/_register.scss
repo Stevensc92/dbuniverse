@@ -1,0 +1,36 @@
+/**
+    I N S C R I P T I O N
+ */
+
+#inscription {
+  margin: 0 auto;
+  background: url("#{$pathImage}/register/background_full.png") no-repeat center;
+  width: 886px;
+  height: 393px;
+
+  .text-inscription {
+    width: 340px;
+    position: relative;
+    top: 70px;
+    left: 450px;
+  }
+
+  .text-inscription label {
+    display: block;
+    float: left;
+    width: 175px;
+  }
+
+  .text-inscription label, .text-inscription input {
+    margin-top: 5px;
+  }
+
+  .text-inscription input[type=submit] {
+    float: right;
+    margin-right: 45px;
+  }
+
+  #inscription-content {
+    width: 55%;
+  }
+}

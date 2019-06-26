@@ -24,5 +24,3 @@
 ###< liip/imagine-bundle ###
 
 /public/node_modules
-/public/src/js/
-/public/src/sass/

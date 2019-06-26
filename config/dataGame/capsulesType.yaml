@@ -1,7 +1,7 @@
 types:
   yellow:
     name: "Jaune"
-  red:
-    name: "Rouge"
   green:
     name: "Verte"
+  red:
+    name: "Rouge"

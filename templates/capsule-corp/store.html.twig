@@ -1,5 +1,36 @@
 {% for capsule in shop %}
     {% set caps = capsule.capsule %}
     {% set stock = capsule.stock %}
+    {% set img =  asset('src/images/capsule/'~caps.type.slug~'.png') %}
 
+    {% if loop.first %}
+        {% set blockRedClosed = false %}
+        {# OUVERTURE CONTAINER CAPSULE ROUGE #}
+        <div id="capsules-rouge" class="d-flex justify-content-around">
+    {% endif %}
+
+
+    {% if caps.type.slug == 'jaune' and blockRedClosed is same as(false) %}
+        {% set blockRedClosed = true %}
+        </div>
+        {# FERMETURE CONTAINER CAPSULE ROUGE ET OUVERTURE CONTAINER CAPSULE JAUNE #}
+        <div id="capsules-jaune" class="d-flex flex-wrap">
+    {% endif %}
+
+    <div class="capsule">
+        <div class="icon"><img src="{{ img }}" alt="{{ caps.slug }}" /></div>
+        <div class="slug">{{ caps.name }}</div>
+        <div class="stat">
+            {% set statCaps = displayStat(caps) %}
+            {% for stat, value in statCaps %}
+                {{ stat }} : {{ value }}<br>
+            {% endfor %}
+        </div>
+        <div class="stock">Restant : {{ stock }}</div>
+    </div>
+
+    {% if loop.last %}
+        </div>
+        {# FERMETURE CONTAINER CAPSULE JAUNE #}
+    {% endif %}
 {% endfor %}
