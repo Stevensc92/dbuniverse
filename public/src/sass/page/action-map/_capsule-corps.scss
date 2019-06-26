@@ -14,11 +14,14 @@
   }
 
   #list {
-    width: 500px;
     position: relative;
     top: 165px;
     left: 50px;
 
+    > #capsules-rouge {
+      width: 500px;
+    }
+    
     > #capsules-jaune {
       margin-top: 110px;
     }
