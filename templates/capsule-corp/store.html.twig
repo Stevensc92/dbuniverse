@@ -6,7 +6,7 @@
     {% if loop.first %}
         {% set blockRedClosed = false %}
         {# OUVERTURE CONTAINER CAPSULE ROUGE #}
-        <div id="capsules-rouge" class="d-flex justify-content-around">
+        <div id="capsules-rouge" class="d-flex justify-content-between row">
     {% endif %}
 
 
@@ -14,10 +14,10 @@
         {% set blockRedClosed = true %}
         </div>
         {# FERMETURE CONTAINER CAPSULE ROUGE ET OUVERTURE CONTAINER CAPSULE JAUNE #}
-        <div id="capsules-jaune" class="d-flex flex-wrap">
+        <div id="capsules-jaune" class="d-flex flex-wrap row">
     {% endif %}
 
-    <div class="capsule">
+    <div class="capsule col-3">
         <div class="icon"><img src="{{ img }}" alt="{{ caps.slug }}" /></div>
         <div class="slug">{{ caps.name }}</div>
         <div class="stat">

@@ -104,7 +104,7 @@ capsules:
     price: 10000
   carapace_tortues:
     type: 1
-    name: "Carapce des Tortues"
+    name: "Carapace des Tortues"
     power: 5
     defense: 7
     speed: 2
