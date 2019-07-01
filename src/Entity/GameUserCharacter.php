@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Entity\GameCharacter;
 use App\Repository\GameCharacterRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -124,6 +126,11 @@ class GameUserCharacter
      */
     private $points_to_distribute;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\GameUserInventory", mappedBy="userCharacter")
+     */
+    private $stuff;
+
     public function __construct()
     {
         $this->level = 1;
@@ -145,6 +152,7 @@ class GameUserCharacter
         $this->frag = 0;
         $this->death = 0;
         $this->draw = 0;
+        $this->stuff = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -518,6 +526,37 @@ class GameUserCharacter
     public function downPointsToDistribute(int $points_to_distribute)
     {
         $this->points_to_distribute -= $points_to_distribute;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|GameUserInventory[]
+     */
+    public function getStuff(): Collection
+    {
+        return $this->stuff;
+    }
+
+    public function addStuff(GameUserInventory $stuff): self
+    {
+        if (!$this->stuff->contains($stuff)) {
+            $this->stuff[] = $stuff;
+            $stuff->setUserCharacter($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStuff(GameUserInventory $stuff): self
+    {
+        if ($this->stuff->contains($stuff)) {
+            $this->stuff->removeElement($stuff);
+            // set the owning side to null (unless already changed)
+            if ($stuff->getUserCharacter() === $this) {
+                $stuff->setUserCharacter(null);
+            }
+        }
 
         return $this;
     }

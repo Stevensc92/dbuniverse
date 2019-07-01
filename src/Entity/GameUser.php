@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -47,6 +49,11 @@ class GameUser
      */
     private $is_active;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\GameUserInventory", mappedBy="user", orphanRemoval=true)
+     */
+    private $inventories;
+
 
     public function __construct()
     {
@@ -55,6 +62,7 @@ class GameUser
         $this->searches = 5;
         $this->last_refresh_searches_at = null;
         $this->is_active = true;
+        $this->inventories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -130,6 +138,37 @@ class GameUser
     public function setIsActive(bool $is_active): self
     {
         $this->is_active = $is_active;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|GameUserInventory[]
+     */
+    public function getInventories(): Collection
+    {
+        return $this->inventories;
+    }
+
+    public function addInventory(GameUserInventory $inventory): self
+    {
+        if (!$this->inventories->contains($inventory)) {
+            $this->inventories[] = $inventory;
+            $inventory->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInventory(GameUserInventory $inventory): self
+    {
+        if ($this->inventories->contains($inventory)) {
+            $this->inventories->removeElement($inventory);
+            // set the owning side to null (unless already changed)
+            if ($inventory->getUser() === $this) {
+                $inventory->setUser(null);
+            }
+        }
 
         return $this;
     }

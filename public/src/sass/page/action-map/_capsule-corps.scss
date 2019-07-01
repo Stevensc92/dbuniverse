@@ -6,25 +6,24 @@
 
   .introduction {
     width: 320px;
-    position: relative;
-    left: 100px;
-    top: 80px;
+    margin-top: 4%;
+    margin-left: 13%;
     text-align: justify;
     color: black;
   }
 
   #list {
-    position: relative;
-    top: 165px;
-    left: 50px;
+    > .shop-container {
+      height: 475px;
+    }
 
-    > #capsules-rouge {
-      width: 500px;
+    #capsules-rouge {
+      width: 450px;
     }
     
-    > #capsules-jaune {
-      margin-top: 75px;
-      width: 750px;
+    #capsules-jaune {
+      width: 710px;
+      height: 280px;
     }
     .capsule {
       .slug {

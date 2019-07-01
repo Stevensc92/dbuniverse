@@ -1,14 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div id="capsule-corp">
+    <div id="capsule-corp" class="d-flex flex-column align-items-start justify-content-around">
         <div class="introduction">
             Bonjour à toi jeune guerrier, je suis le Dr. Brief et tu te trouves dans ma boutique.
             Toutes les heures tu trouveras de nouvelles paires de capsules alors ne sois pas en retard !
         </div>
 
-        <div id="list">
+        <div id="list" class="ml-5">
             {{ render(controller('App\\Controller\\CapsuleCorpController::index')) }}
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+
 {% endblock %}

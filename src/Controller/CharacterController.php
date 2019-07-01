@@ -15,11 +15,6 @@ class CharacterController extends AbstractController
      */
     public function index(Character $serviceCharacter)
     {
-        $user = $this->getUser();
-
-        $tk = $this->container->get('security.token_storage');
-        $em = $this->getDoctrine()->getManager();
-
         $CC = $serviceCharacter->getCurrentCharacter();
 
         if ($CC->getPointsToDistribute() > 0) {

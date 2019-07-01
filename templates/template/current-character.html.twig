@@ -14,7 +14,7 @@
                 </span>
             </span>
         </span>
-        <span class="zenis">Zénis : <span>{{ game.getZenis() }}</span></span>
+        <span class="zenis">Zénis : <span>{{ game.getZenis()|number_format(0, '', ' ') }}</span></span>
     </div>
 
     <div id="list-character" class="mt-5">
