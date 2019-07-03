@@ -19,7 +19,7 @@ class AjaxController extends AbstractController
      * @Route("/add-carac", name="add.carac", methods="POST")
      *
      */
-    public function index(Request $request)
+    public function index(Request $request, Character $serviceCharacter)
     {
         $response = [
             'Not a xml request',
@@ -27,13 +27,10 @@ class AjaxController extends AbstractController
         ];
 
         if ($request->isXmlHttpRequest()) {
-            $user = $this->getUser();
 
-            $tk = $this->container->get('security.token_storage');
-            $em = $this->getDoctrine()->getManager();
-
-            $serviceCharacter = new Character($em, $tk);
-            $CC = $serviceCharacter->getCurrentCharacter();
+            $user               = $this->getUser();
+            $em                 = $this->getDoctrine()->getManager();
+            $CC                 = $serviceCharacter->getCurrentCharacter();
 
             $response           = [];
             $fieldsAvailable    = [
@@ -51,11 +48,20 @@ class AjaxController extends AbstractController
 
             $pointsAdded = 0;
             $error = false;
-            foreach (explode('&', $formData) as $input) {
+
+            $explodeData = explode('&', $formData);
+
+            foreach ($explodeData as $input) {
                 if ($pointsAdded <= $pointsAvailable) {
                     list($field, $value) = explode('=', $input);
 
-                    if (in_array($name = str_replace('add_', '', $field), $fieldsAvailable)) {
+                    if ($field === 'token') {
+                        if (!$this->isCsrfTokenValid($user->getId(), $value)) {
+                            $error = 'Erreur de token';
+                        }
+                    }
+
+                    if (in_array($name = str_replace('add_', '', $field), $fieldsAvailable) && !$error) {
                         if ($value !== '') {
                             $method = 'up'.ucfirst($name);
 
@@ -88,14 +94,21 @@ class AjaxController extends AbstractController
                 ];
             } else {
                 $CC->updateKi();
-                $em->persist($CC);
                 $em->flush();
                 $response = [
-                    ($pointsAvailable - $pointsAdded),
-                    Response::HTTP_OK
+                    json_encode([
+                        "power"         => $CC->getPower(),
+                        "defense"       => $CC->getDefense(),
+                        "magic"         => $CC->getMagic(),
+                        "luck"          => $CC->getLuck(),
+                        "speed"         => $CC->getSpeed(),
+                        "concentration" => $CC->getConcentration(),
+                        "life"          => $CC->getLife(),
+                        "energy"        => $CC->getEnergy(),
+                    ]),
+                    Response::HTTP_OK,
                 ];
             }
-
         }
 
         return new Response($response[0], $response[1]);

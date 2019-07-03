@@ -33,6 +33,7 @@ class AddCaracType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => GameUserCharacter::class,
+            'csrf_protection' => false,
         ]);
     }
 }

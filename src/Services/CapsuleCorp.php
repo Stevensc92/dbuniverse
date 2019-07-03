@@ -28,7 +28,6 @@ class CapsuleCorp
     {
         $this->em           = $em;
         $this->tokenStorage = $tokenStorage;
-
     }
 
     public function generateShop()

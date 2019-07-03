@@ -94,7 +94,9 @@
             {{ form_row(form.life) }}
             {{ form_row(form.energy) }}
             <div class="form-group row">
-                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                    <input type="hidden" name="token" value="{{ csrf_token(app.user.id) }}" />
+                </div>
                 <div class="col-sm-8">
                     <button type="submit" class="btn btn-primary">Ajouter les points</button>
                 </div>
@@ -108,11 +110,11 @@
     {% if CC.pointsToDistribute > 0 and form is defined %}
     <script type="text/javascript">
         jQuery(function($){
-            var $divForm        = $('#form-add-carac');
-            var $character      = $('#info-character');
-            var $form           = $('form[name="add_carac"]');
-            var $inputAddCarac  = $('.input-add-carac');
-            var pointsLeft;
+            const $divForm        = $('#form-add-carac');
+            const $character      = $('#info-character');
+            const $form           = $('form[name="add_carac"]');
+            const $inputAddCarac  = $('.input-add-carac');
+            let pointsLeft        = {{ CC.pointsToDistribute }};
 
             $inputAddCarac.each(function() {
                 let name = $(this).attr('name');
@@ -170,6 +172,7 @@
                     }
                 });
                 pointsLeft  = {{ CC.pointsToDistribute }} - pointsSet;
+                console.log(pointsLeft);
                 let text        = (pointsLeft > 0) ? 'points' : 'point';
 
                 if (pointsLeft >= 0) {
@@ -211,11 +214,12 @@
                     },
                     function(response) {
                         var contentHtmlDamage = '';
+                        console.log(response);
                         $('.input-add-carac').each(function() {
                             let name = $(this).attr('name').split('_');
+                            let jsonResponse = $.parseJSON(response);
                             let listCarac = $('#list-stat .number[data-carac="'+name[1]+'"]');
-                            let content = listCarac.html();
-                            let newContent = parseInt(content);
+                            let newContent = parseInt(jsonResponse[name[1]]);
 
                             let level = {{ CC.level }};
                             let levelPow = parseFloat(1 + (level / 10));
@@ -226,8 +230,8 @@
                                 case "power":
                                     multiplicator = 1;
                                     let degMax      = Math.ceil( Math.ceil(Math.exp(2)) * Math.pow(newContent, 0.85) );
-                                    degMax          = Math.ceil(degMax * levelPow);
-                                    let degMin      = Math.ceil( degMax * 0.65);
+                                    degMax          = Math.ceil( degMax * levelPow );
+                                    let degMin      = Math.ceil( degMax * 0.65 );
 
                                     contentHtmlDamage += '<li><span class="title">Dégâts max</span> <span class="number">'+degMax+'</span></li>';
                                     contentHtmlDamage += '<li><span class="title">Dégâts min</span> <span class="number">'+degMin+'</span></li>';
@@ -236,8 +240,8 @@
                                 case "defense":
                                     multiplicator = 1;
                                     let defMax = Math.ceil( Math.ceil(Math.exp(2)) * Math.pow(newContent, 0.756) );
-                                    defMax     = Math.floor(defMax * levelPow);
-                                    let defMin = Math.ceil( defMax * 0.40);
+                                    defMax     = Math.floor( defMax * levelPow );
+                                    let defMin = Math.ceil( defMax * 0.40 );
 
                                     contentHtmlDamage += '<li><span class="title">Défense max</span> <span class="number">'+defMax+'</span></li>';
                                     contentHtmlDamage += '<li><span class="title">Défense min</span> <span class="number">'+defMin+'</span></li>';
@@ -246,8 +250,8 @@
                                 case "magic":
                                     multiplicator = 1;
                                     let magMax = Math.ceil( Math.ceil(Math.exp(2.85)) * Math.pow(newContent, 0.75) );
-                                    magMax     = Math.ceil(magMax * levelPow);
-                                    let magMin = Math.ceil( magMax * 0.65);
+                                    magMax     = Math.ceil( magMax * levelPow );
+                                    let magMin = Math.ceil( magMax * 0.65 );
 
                                     contentHtmlDamage += '<li><span class="title">Magie max</span> <span class="number">'+magMax+'</span></li>';
                                     contentHtmlDamage += '<li><span class="title">Magie min</span> <span class="number">'+magMin+'</span></li>';
@@ -267,19 +271,13 @@
                             }
 
                             if ($(this).val() > 0) {
-                                newContent = parseInt(content) + parseInt($(this).val());
                                 listCarac.html(newContent);
                                 $(this).val('');
                             }
 
                             let INTpointsLeft = parseInt(pointsLeft);
 
-                            console.log(INTpointsLeft * multiplicator);
-
                             $(this).attr('max', parseInt(INTpointsLeft * multiplicator));
-
-
-
                         });
 
                         $('.toggle-form-add-carac span').html(pointsLeft);
@@ -293,10 +291,6 @@
                     }
                 );
             });
-
-
-
-
         });
     </script>
     {% endif %}

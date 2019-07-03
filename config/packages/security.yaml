@@ -34,5 +34,6 @@ security:
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/ajax, roles: ROLE_USER }
         - { path: ^/character, roles: ROLE_USER }
         - { path: ^/map, roles: ROLE_USER }
