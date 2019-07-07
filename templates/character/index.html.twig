@@ -217,6 +217,7 @@
                         console.log(response);
                         $('.input-add-carac').each(function() {
                             let name = $(this).attr('name').split('_');
+                            let inputDisabled = $('#add_carac_'+name[1]);
                             let jsonResponse = $.parseJSON(response);
                             let listCarac = $('#list-stat .number[data-carac="'+name[1]+'"]');
                             let newContent = parseInt(jsonResponse[name[1]]);
@@ -278,11 +279,13 @@
                             let INTpointsLeft = parseInt(pointsLeft);
 
                             $(this).attr('max', parseInt(INTpointsLeft * multiplicator));
+                            $(inputDisabled).attr('value', newContent);
                         });
 
                         $('.toggle-form-add-carac span').html(pointsLeft);
                         if (pointsLeft === 0) {
                             $('.toggle-form-add-carac').addClass('d-none');
+                            $('#form-add-carac').remove();
                         }
                         $('.power-fight .characteristic').html(contentHtmlDamage);
 

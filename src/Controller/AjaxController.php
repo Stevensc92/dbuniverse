@@ -2,7 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\GameCapsule;
+use App\Entity\GameCapsuleCorp;
+use App\Entity\User;
+use App\Services\CapsuleCorp;
 use App\Services\Character;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +20,12 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class AjaxController extends AbstractController
 {
+    private $em;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->em = $entityManager;
+    }
     /**
      * @Route("/add-carac", name="add.carac", methods="POST")
      *
@@ -29,7 +40,7 @@ class AjaxController extends AbstractController
         if ($request->isXmlHttpRequest()) {
 
             $user               = $this->getUser();
-            $em                 = $this->getDoctrine()->getManager();
+            $em                 = $this->em;
             $CC                 = $serviceCharacter->getCurrentCharacter();
 
             $response           = [];
@@ -112,5 +123,43 @@ class AjaxController extends AbstractController
         }
 
         return new Response($response[0], $response[1]);
+    }
+
+    /**
+     * @Route("/buy-capsule", name="game.buy.capsule", methods="POST")
+     * @param Request $request
+     * @param CapsuleCorp $capsuleCorp
+     * @return Response
+     */
+    public function buyCapsule(Request $request, CapsuleCorp $capsuleCorp)
+    {
+        if ($request->isXmlHttpRequest()) {
+
+            $data           = $request->request->get('data');
+            $capsuleId      = $data['capsule'];
+            $em             = $this->em;
+
+            /** @var GameCapsule $capsule */
+            $capsule        = $em->getRepository(GameCapsule::class)->find($capsuleId);
+
+            if ($checkIn = $capsuleCorp->buyCapsule($capsule)) {
+                $response = [
+                    "ok",
+                    Response::HTTP_OK
+                ];
+            } else {
+                $response =  [
+                    $checkIn,
+                    Response::HTTP_BAD_REQUEST,
+                ];
+            }
+        } else {
+            $response = [
+                "Not an ajax request",
+                Response::HTTP_BAD_REQUEST
+            ];
+        }
+
+        return new Response(json_encode($response[0]), $response[1]);
     }
 }

@@ -106,6 +106,17 @@ class GameUser
         return $this;
     }
 
+    public function updateZenis(int $zenis)
+    {
+        if ( ($this->getZenis() - $zenis) < 0) {
+            return false;
+        } else {
+            $this->zenis -= $zenis;
+        }
+
+        return $this;
+    }
+
     public function getSearches(): ?int
     {
         return $this->searches;

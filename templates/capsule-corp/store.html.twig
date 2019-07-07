@@ -18,7 +18,8 @@
         <div id="capsules-jaune" class="d-flex flex-row justify-content-between flex-wrap">
     {% endif %}
 
-    <div class="capsule {{ blockRedClosed ? 'col-3' : '' }} no-padding">
+    <div class="capsule {{ blockRedClosed ? 'col-3' : '' }} no-padding" data-id="{{ caps.id }}"
+        title="">
         <div class="icon"><img src="{{ img }}" alt="{{ caps.slug }}" /></div>
         <div class="slug">{{ caps.name }}</div>
         <div class="stat">
@@ -36,4 +37,5 @@
         {# FERMETURE CONTAINER CAPSULE JAUNE #}
     {% endif %}
 {% endfor %}
+    <span data-url="{{ path('game.buy.capsule') }}" class="ajax-url d-none"></span>
 </div>

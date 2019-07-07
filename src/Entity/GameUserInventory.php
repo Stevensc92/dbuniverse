@@ -25,27 +25,27 @@ class GameUserInventory
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\GameUserCharacter", inversedBy="stuff")
      */
-    private $userCharacter;
+    private $userCharacter = null;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\GameCapsule", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\GameCapsule")
      */
-    private $capsule;
+    private $capsule = null;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\GameEquipment", cascade={"persist", "remove"})
      */
-    private $equipment;
+    private $equipment = null;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $level;
+    private $level = 1;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $experience;
+    private $experience = 0;
 
     public function getId(): ?int
     {

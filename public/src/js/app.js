@@ -3,6 +3,7 @@ var app = {
         app.changeCharacter.init();
         app.flashMessage.init();
         app.menuMapAction.init();
+        app.capsuleCorp.init();
     },
 
     changeCharacter: {
@@ -45,10 +46,9 @@ var app = {
     menuMapAction: {
         init: function() {
             if($('#lien-map-actions').length) {
-                console.log('map action init');
                 let actionsContainer = $('#lien-map-actions');
                 let btnMap = $('.lien-map');
-                console.log($(btnMap).position());
+
                 $(btnMap).hover(function() {
                     console.log('toto');
                     $(actionsContainer).addClass('opened').css({'left':$(btnMap).position().left});
@@ -61,6 +61,46 @@ var app = {
                     }, 2500);
                 });
             }
+        }
+    },
+
+    capsuleCorp: {
+        init: function() {
+            const btnBuy = $('.buy');
+            const ajaxUrl = $('.ajax-url').data('url');
+            $('.ajax-url').remove();
+
+            $(btnBuy).on('click', function() {
+                app.capsuleCorp.buy(ajaxUrl, $(this).parent().data('id'));
+            })
+        },
+
+        buy: function(path, capsId) {
+            $.post(
+                path,
+                {
+                    data: {
+                        capsule: capsId
+                    }
+                },
+                function(response) {
+                    console.log(response);
+
+
+                }
+            )
+        },
+    },
+
+    capsule: {
+        init: function() {
+            app.capsule.displayStat();
+        },
+
+        displayStat: function() {
+            $('.capsule').on('hover', function() {
+
+            });
         }
     }
 };
