@@ -24,9 +24,7 @@
         <div class="slug">{{ caps.name }}</div>
         <div class="stat">
             {% set statCaps = displayStat(caps) %}
-            {% for stat, value in statCaps %}
-                {{ stat }} : {{ value }}<br>
-            {% endfor %}
+            {{ dump(statCaps) }}
         </div>
         <div class="stock">Restant : {{ stock }}</div>
         <div class="btn btn-primary buy">Acheter</div>

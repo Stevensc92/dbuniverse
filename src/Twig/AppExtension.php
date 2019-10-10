@@ -18,7 +18,12 @@ class AppExtension extends AbstractExtension
 
     public function displayStat(GameCapsule $capsule)
     {
-        $title = '&lt;ul style=&quot;margin-top: 7px;&quot; &gt;&lt;li&gt;&lt;span style=&quot;float: left;&quot;&gt;Niveau : &lt;span style=&quot;color:blue;&quot;&gt;'.$Stat['level_capsule'].'&lt;/span&gt;&lt;/span&gt; &lt;span style=&quot;float: right;&quot;&gt;Expérience : &lt;span style=&quot;color:blue;&quot;&gt;'.$Stat['experience'].' Xp&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;&lt;br/&gt;';
+//        $title = '&lt;ul style=&quot;margin-top: 7px;&quot; &gt;&lt;li&gt;&lt;span style=&quot;float: left;&quot;&gt;Niveau : &lt;span style=&quot;color:blue;&quot;&gt;'.$Stat['level_capsule'].'&lt;/span&gt;&lt;/span&gt; &lt;span style=&quot;float: right;&quot;&gt;Expérience : &lt;span style=&quot;color:blue;&quot;&gt;'.$Stat['experience'].' Xp&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;&lt;br/&gt;';
+
+        $key = [
+            "Force"
+        ];
+
 
         $listCarac = [
             "power",
@@ -31,10 +36,12 @@ class AppExtension extends AbstractExtension
             "energy"
         ];
 
+        $table = [];
+
         foreach ($listCarac as $carac) {
             $method = 'get'.ucfirst($carac);
 
-            $$carac = $capsule->$method();
+            $table[$carac] = $capsule->$method();
         }
 
         switch ($capsule->getType()->getId()) {
@@ -43,7 +50,7 @@ class AppExtension extends AbstractExtension
             default:
                 foreach ($listCarac as $carac) {
                     $method = "get".ucfirst($carac);
-                    $$carac += ($capsule->$method());
+                    $table[$carac] += ($capsule->$method());
                 }
 
                 $stats = [
