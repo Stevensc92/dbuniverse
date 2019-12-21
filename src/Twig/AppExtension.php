@@ -31,6 +31,8 @@ class AppExtension extends AbstractExtension
             "energy"
         ];
 
+        $table = [];
+
         $write = function($key, $value, $position = "left") {
             $txt = "&lt;li&gt;&lt;span style=&quot;float: {$position};&quot;&gt;{$key} : &lt;span style=&quot;color:blue;&quot;&gt; {$value}";
         };
@@ -38,13 +40,18 @@ class AppExtension extends AbstractExtension
         foreach ($listCarac as $carac) {
             $method = 'get'.ucfirst($carac);
 
-            $$carac = $capsule->$method();
+            $table[$carac] = $capsule->$method();
         }
 
         switch ($capsule->getType()->getId()) {
             case 1:
             case 2:
             default:
+                foreach ($listCarac as $carac) {
+                    $method = "get".ucfirst($carac);
+                    $table[$carac] += ($capsule->$method());
+                }
+
                 $stats = [
                     "Force"         => $capsule->getPower(),
                     "Défense"       => $capsule->getDefense(),
