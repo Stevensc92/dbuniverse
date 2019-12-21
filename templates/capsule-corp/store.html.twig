@@ -22,12 +22,12 @@
         title="">
         <div class="icon"><img src="{{ img }}" alt="{{ caps.slug }}" /></div>
         <div class="slug">{{ caps.name }}</div>
-        <div class="stat">
+        <span class="stat">
             {% set statCaps = displayStat(caps) %}
             {% for stat, value in statCaps %}
                 {{ stat }} : {{ value }}<br>
             {% endfor %}
-        </div>
+        </span>
         <div class="stock">Restant : {{ stock }}</div>
         <div class="btn btn-primary buy">Acheter</div>
     </div>

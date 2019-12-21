@@ -144,7 +144,7 @@ class AjaxController extends AbstractController
 
             if ($checkIn = $capsuleCorp->buyCapsule($capsule)) {
                 $response = [
-                    "ok",
+                    $checkIn,
                     Response::HTTP_OK
                 ];
             } else {

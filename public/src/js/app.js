@@ -4,6 +4,7 @@ var app = {
         app.flashMessage.init();
         app.menuMapAction.init();
         app.capsuleCorp.init();
+        app.capsule.init();
     },
 
     changeCharacter: {
@@ -84,9 +85,27 @@ var app = {
                     }
                 },
                 function(response) {
-                    console.log(response);
+                    let responseJson = $.parseJSON(response);
+                    let price = responseJson.price;
+                    let newStock = responseJson.newStock;
+
+                    const zenis = $('.zenis span');
+                    let currentZenis = zenis.html();
+                    const nbCharBeforeSpace = 3;
+                    const nbDoingReplace = currentZenis.length / nbCharBeforeSpace;
+
+                    console.log('Before for currentZenis : ', currentZenis);
+
+                    for (let i = 0; i < nbDoingReplace) {
+                        currentZenis = currentZenis.replace(' ', '');
+                    }
+
+                    console.log('After for currentZenis : ', currentZenis);
 
 
+                    currentZenis = parseInt(currentZenis.replace(' ', '').replace(' ', ''));
+                    let newZenis = currentZenis - price;
+                    // console.log(currentZenis);
                 }
             )
         },
@@ -98,9 +117,19 @@ var app = {
         },
 
         displayStat: function() {
-            $('.capsule').on('hover', function() {
+            let $capsule = $('.capsule');
 
+            $capsule.hover(function(e) {
+                let $stat = $(this).find('.stat');
+                e.stopPropagation();
+                $stat.css('display', 'block');
             });
+
+            $capsule.blur(function(e) {
+                let $stat = $(this).find('.stat');
+                e.stopPropagation();
+                $stat.css('display', 'inline');
+            })
         }
     }
 };

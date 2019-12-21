@@ -33,6 +33,12 @@
       .stat {
         display: none;
       }
+
+      :hover {
+        .stat {
+          display: block;
+        }
+      }
     }
   }
 }

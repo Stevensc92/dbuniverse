@@ -110,7 +110,7 @@ class CapsuleCorp
 
     /**
      * @param GameCapsule $capsule
-     * @return string|boolean
+     * @return mixed
      */
     public function buyCapsule(gameCapsule $capsule)
     {
@@ -122,8 +122,8 @@ class CapsuleCorp
         $capsuleInShop  = $this->em->getRepository(GameCapsuleCorp::class)->findOneBy(['capsule' => $capsule]);
 
         if ($capsuleInShop) {
-
-            if ($checkIn = $this->checkBuyCapsule($capsule, $gameUser, $capsuleInShop)) {
+            $checkIn = $this->checkBuyCapsule($capsule, $gameUser, $capsuleInShop);
+            if ($checkIn === true) {
                 $capsuleInShop->setStock($capsuleInShop->getStock() - 1);
 
                 $inventory = new GameUserInventory();
@@ -136,7 +136,12 @@ class CapsuleCorp
 
                 $this->em->flush();
 
-                return true;
+                $return = [
+                    "price"     => $capsule->getPrice(),
+                    "newStock"  => $capsuleInShop->getStock(),
+                ];
+
+                return $return;
             } else {
                 return $checkIn;
             }

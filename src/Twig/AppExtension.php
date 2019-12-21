@@ -18,7 +18,7 @@ class AppExtension extends AbstractExtension
 
     public function displayStat(GameCapsule $capsule)
     {
-        $title = '&lt;ul style=&quot;margin-top: 7px;&quot; &gt;&lt;li&gt;&lt;span style=&quot;float: left;&quot;&gt;Niveau : &lt;span style=&quot;color:blue;&quot;&gt;'.$Stat['level_capsule'].'&lt;/span&gt;&lt;/span&gt; &lt;span style=&quot;float: right;&quot;&gt;Expérience : &lt;span style=&quot;color:blue;&quot;&gt;'.$Stat['experience'].' Xp&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;&lt;br/&gt;';
+        $title = '&lt;ul style=&quot;margin-top: 7px;&quot; &gt;&lt;li&gt;&lt;span style=&quot;float: left;&quot;&gt;Niveau : &lt;span style=&quot;color:blue;&quot;&gt;%LEVEL%&lt;/span&gt;&lt;/span&gt; &lt;span style=&quot;float: right;&quot;&gt;Expérience : &lt;span style=&quot;color:blue;&quot;&gt;%EXPERIENCE% Xp&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;&lt;br/&gt;';
 
         $listCarac = [
             "power",
@@ -31,6 +31,10 @@ class AppExtension extends AbstractExtension
             "energy"
         ];
 
+        $write = function($key, $value, $position = "left") {
+            $txt = "&lt;li&gt;&lt;span style=&quot;float: {$position};&quot;&gt;{$key} : &lt;span style=&quot;color:blue;&quot;&gt; {$value}";
+        };
+
         foreach ($listCarac as $carac) {
             $method = 'get'.ucfirst($carac);
 
@@ -41,11 +45,6 @@ class AppExtension extends AbstractExtension
             case 1:
             case 2:
             default:
-                foreach ($listCarac as $carac) {
-                    $method = "get".ucfirst($carac);
-                    $$carac += ($capsule->$method());
-                }
-
                 $stats = [
                     "Force"         => $capsule->getPower(),
                     "Défense"       => $capsule->getDefense(),
@@ -67,6 +66,10 @@ class AppExtension extends AbstractExtension
                 ];
             break;
         }
+
+//        foreach ($stats as $stat) {
+//            $title .= ""
+//        }
 
         return $stats;
     }
