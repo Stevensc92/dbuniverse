@@ -18,18 +18,22 @@
         <div id="capsules-jaune" class="d-flex flex-row justify-content-between flex-wrap">
     {% endif %}
 
-    <div class="capsule {{ blockRedClosed ? 'col-3' : '' }} no-padding" data-id="{{ caps.id }}"
-        title="">
+
+    {% set statCaps = displayStat(caps) %}
+    <div class="capsule {{ blockRedClosed ? 'col-3' : '' }} no-padding overlay"
+         data-id="{{ caps.id }}"
+         data-toggle="tooltip"
+         data-html="true"
+{#         title="{%- for stat, value in statCaps %}#}
+{#                {{ stat }} : <em>{{ value }}</em><br>#}
+{#            {% endfor -%}"#}
+    >
         <div class="icon"><img src="{{ img }}" alt="{{ caps.slug }}" /></div>
         <div class="slug">{{ caps.name }}</div>
-        <span class="stat">
-            {% set statCaps = displayStat(caps) %}
-            {% for stat, value in statCaps %}
-                {{ stat }} : {{ value }}<br>
-            {% endfor %}
-        </span>
         <div class="stock">Restant : {{ stock }}</div>
+        <div class="stock">Prix : {{ caps.price }}</div>
         <div class="btn btn-primary buy">Acheter</div>
+        {% include 'template/overlay-capsule.html.twig' with {'statCaps': statCaps} %}
     </div>
 
     {% if loop.last %}
@@ -39,3 +43,4 @@
 {% endfor %}
     <span data-url="{{ path('game.buy.capsule') }}" class="ajax-url d-none"></span>
 </div>
+

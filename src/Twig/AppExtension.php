@@ -47,21 +47,15 @@ class AppExtension extends AbstractExtension
             case 1:
             case 2:
             default:
-                foreach ($listCarac as $carac) {
-                    $method = "get".ucfirst($carac);
-                    $table[$carac] += ($capsule->$method());
-                }
-
                 $stats = [
-                    "Force"         => $capsule->getPower(),
-                    "Défense"       => $capsule->getDefense(),
-                    "Magie"         => $capsule->getMagic(),
-                    "Chance"        => $capsule->getLuck(),
-                    "Vitesse"       => $capsule->getSpeed(),
-                    "Concentration" => $capsule->getConcentration(),
-                    "Vie"           => $capsule->getLife(),
-                    "Énergie"       => $capsule->getEnergy(),
-                    "Prix"          => $capsule->getPrice(),
+                    "Force"         => $capsule->getPower() ?? '0',
+                    "Défense"       => $capsule->getDefense() ?? '0',
+                    "Magie"         => $capsule->getMagic() ?? '0',
+                    "Chance"        => $capsule->getLuck() ?? '0',
+                    "Vitesse"       => $capsule->getSpeed() ?? '0',
+                    "Concentration" => $capsule->getConcentration() ?? '0',
+                    "Vie"           => $capsule->getLife() ?? '0',
+                    "Énergie"       => $capsule->getEnergy() ?? '0',
                 ];
             break;
 
@@ -69,7 +63,6 @@ class AppExtension extends AbstractExtension
                 $stats = [
                     "Dégât"     => $capsule->getDamage(),
                     "Énergie"   => $capsule->getEnergy(),
-                    "Prix"      => $capsule->getPrice(),
                 ];
             break;
         }

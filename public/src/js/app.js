@@ -96,7 +96,7 @@ var app = {
 
                     console.log('Before for currentZenis : ', currentZenis);
 
-                    for (let i = 0; i < nbDoingReplace) {
+                    for (let i = 0; i < nbDoingReplace; i++) {
                         currentZenis = currentZenis.replace(' ', '');
                     }
 
@@ -113,7 +113,29 @@ var app = {
 
     capsule: {
         init: function() {
-            app.capsule.displayStat();
+            // app.capsule.displayStat();
+            // let htmlTemplate = '<div class="tooltip tooltip-custom"><div class="overlay"><h2 class="overlay--title">Caractéristique</h2></div></div><div class="tooltip-inner"></div></div>';
+            // $(function () {
+            //     $('[data-toggle="tooltip"]').tooltip({
+            //         html: true,
+            //         // template: '<div class="tooltip tooltip-custom"><div class="title">Test</div><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
+            //         content: function() {
+            //             return $(this).prop('title');
+            //         },
+            //         track: true
+            //     })
+            // })
+            let capsules = document.querySelectorAll('.overlay .overlay--data');
+
+            window.onmousemove = function(e) {
+                let x = (e.clientX + 20) + 'px';
+                let y = (e.clientY + 20) + 'px';
+
+                for (var i = 0; i < capsules.length; i++) {
+                    capsules[i].style.top = y;
+                    capsules[i].style.left = x;
+                }
+            };
         },
 
         displayStat: function() {

@@ -1,0 +1,13 @@
+<div class="overlay--data">
+    <div class="overlay--title">Détails</div>
+    <div class="overlay--content">
+    {% for stat, value in statCaps %}
+        {% set breaker = '' %}
+        {% if loop.index % 2 == '0' %}
+            {% set breaker = 'overlay--break' %}
+        {% endif %}
+        <span class="overlay--line {{ breaker }}">{{ stat }} : {{ value }}</span>
+{#        {{ stat }} : <em>{{ value }}</em><br>#}
+    {% endfor %}
+    </div>
+</div>

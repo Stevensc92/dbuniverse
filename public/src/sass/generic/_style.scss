@@ -46,3 +46,44 @@
 //    opacity: 1;
 //  }
 //}
+
+.overlay {
+  text-decoration: none;
+  position: relative;
+  .overlay--data {
+    display: none;
+    border: 2px solid black;
+    border-radius: 70% 70% 25% 25%;
+
+    .overlay--title {
+      font-size: 2.3em;
+      text-align: center;
+    }
+
+    .overlay--content {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+
+      &span:last-child {
+        align-self: center;
+      }
+    }
+
+    .overlay--line {
+      //display: inline-block;
+
+      &.overlay--break {
+        //display: block;
+      }
+    }
+  }
+  &:hover .overlay--data {
+    display: block;
+    position: fixed;
+    overflow: hidden;
+    z-index: 9999;
+    max-width: 200px;
+  }
+}
+

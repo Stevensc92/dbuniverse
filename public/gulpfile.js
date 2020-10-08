@@ -42,5 +42,8 @@ gulp.task('watch', function() {
         .on('change', function(file) {
             console.log('File ' + file + ' was changed, running tasks...');
         });
-    gulp.watch('./src/js/*.js', gulp.series('minJs'));
+    gulp.watch('./src/js/*.js', gulp.series('minJs'))
+        .on('change', function(file) {
+            console.log('File '+file+' was changed, running minJs...');
+        });
 });
