@@ -24,3 +24,4 @@
 ###< liip/imagine-bundle ###
 
 /public/node_modules
+composer.lock
