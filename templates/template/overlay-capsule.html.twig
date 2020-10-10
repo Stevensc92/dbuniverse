@@ -6,7 +6,9 @@
         {% if loop.index % 2 == '0' %}
             {% set breaker = 'overlay--break' %}
         {% endif %}
-        <span class="overlay--line {{ breaker }}">{{ stat }} : <span class="stat-value">{{ value }}</span></span>
+        <div class="overlay--line {{ breaker }}">
+            <span class="stat-name">{{ stat }}</span> : <span class="stat-value">{{ value }}</span>
+        </div>
 {#        {{ stat }} : <em>{{ value }}</em><br>#}
     {% endfor %}
     </div>

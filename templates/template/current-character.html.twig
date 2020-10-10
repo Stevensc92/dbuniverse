@@ -17,6 +17,7 @@
         <span class="zenis">Zénis : <span>{{ game.getZenis()|number_format(0, '', ' ') }}</span></span>
     </div>
 
+    {% if game.getListCharacterForUser()|length > 1 %}
     <div id="list-character" class="mt-5">
         <div class="select-label">Changer de personnage</div>
         <div class="select-select">
@@ -30,5 +31,6 @@
             {% endfor %}
         </div>
     </div>
+    {% endif %}
 </div>
 {% endspaceless %}

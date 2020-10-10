@@ -1,0 +1,51 @@
+
+.overlay {
+  text-decoration: none;
+  position: relative;
+  .overlay--data {
+    display: none;
+
+    .overlay--title {
+      font-size: 2.3em;
+      text-align: center;
+    }
+
+    .overlay--content {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      height: calc(100% - 50px);
+
+      &span:last-child {
+        align-self: center;
+      }
+
+      .stat-value {
+        color: red;
+        font-weight: bold;
+      }
+    }
+
+    .overlay--line {
+      //display: inline-block;
+
+      &.overlay--break {
+        align-content: flex-end;
+      }
+    }
+  }
+
+  &:hover .overlay--data {
+    color: white;
+    display: block;
+    position: fixed;
+    overflow: hidden;
+    z-index: 9999;
+    background-image: url('#{$pathImage}/capsule/background.png');
+    width: 276px;
+    height: 174px;
+    padding: 0 5px;
+    opacity: 0.8;
+  }
+}
+

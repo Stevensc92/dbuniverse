@@ -89,6 +89,15 @@ class AppController extends Controller
         $gameCharacter      = $gameCharacterRepo->findOneBy(['slug' => $slug]);
         $gameUser           = $this->getUser()->getGameUser();
 
+
+        if (!$gameCharacter) {
+            $this->addFlash('error', 'Personnage invalide');
+            if ($request->headers->get('referer') === null) {
+                return $this->redirectToRoute('index');
+            } else
+                return $this->redirect($request->headers->get('referer'));
+        }
+
         $gameUser->setCurrentCharacter($gameCharacter->getId());
 
         $em->persist($gameUser);
