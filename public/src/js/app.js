@@ -40,6 +40,11 @@ var app = {
                 $('.alert .close').on('click', function() {
                     $(this).parent().fadeOut();
                 });
+
+                setTimeout(function() {
+                    $('.alert .close').parent().fadeOut();
+                }, 5000);
+
             }
         },
     },

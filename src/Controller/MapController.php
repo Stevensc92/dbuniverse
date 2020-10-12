@@ -77,7 +77,7 @@ class MapController extends AbstractController
         $em->persist($CC);
         $em->flush();
 
-        $this->addFlash('success', 'Déplacement réussie');
+        $this->addFlash('success', 'Déplacement réussie pour le personnage <strong>'.$CC->getCharacter()->getName().'</strong>');
 
         return $this->redirect($request->headers->get('referer'));
     }
